@@ -11,7 +11,7 @@ const Car = db.define('car', {
     allowNull: false
   },
   year: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   color: {
@@ -27,11 +27,11 @@ const Car = db.define('car', {
     allowNull: false
   },
   price: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   rating: {
-    type: Sequelize.ARRAY(Sequelize.NUMBER)
+    type: Sequelize.ARRAY(Sequelize.INTEGER)
   },
   imageUrl: {
     type: Sequelize.TEXT,
