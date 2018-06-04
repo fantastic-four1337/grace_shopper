@@ -1,7 +1,5 @@
 # Boilermaker
 
-JUST CHANGED THIS TO PRACTICE GIT BRANCHING
-
 *Good things come in pairs*
 
 Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's `boilermaker`!
