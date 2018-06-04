@@ -6,7 +6,7 @@ const Cart = db.define('cart', {
     products: {
         type: Sequelize.STRING,
         allowNull: false,
-        
+
     },
     subTotal: {
         type: Sequelize.FLOAT,
