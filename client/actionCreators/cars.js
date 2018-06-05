@@ -22,7 +22,15 @@ export const addedCar = (newCar) => ({
         status: 'loaded',
         newCar
     }
-}) 
+})
+
+export const editedCar = (editCar) => ({
+    type: CARS.EDITED_CAR,
+    payload: {
+        status: 'loaded',
+        editCar
+    }
+})
 
 export const removedCar = (removeCar) => ({
     type: CARS.REMOVED_CAR,
