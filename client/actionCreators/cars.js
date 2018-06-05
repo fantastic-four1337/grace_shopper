@@ -24,18 +24,19 @@ export const addedCar = (newCar) => ({
     }
 })
 
-export const editedCar = (editCar) => ({
+export const editedCar = (id, car) => ({
     type: CARS.EDITED_CAR,
     payload: {
         status: 'loaded',
-        editCar
+        id,
+        car
     }
 })
 
-export const removedCar = (removeCar) => ({
+export const removedCar = (id) => ({
     type: CARS.REMOVED_CAR,
     payload: {
         status: 'loaded',
-        removeCar
+        id
     }
 })
