@@ -27,7 +27,7 @@ export const getSingleCart = id => async dispatch => {
   }
 };
 
-export const addCart = cartInfo => async dispatch => {
+export const addCart = cartInfo => dispatch => {
   try {
     dispatch(addedCart(cartInfo));
   } catch (err) {
@@ -35,7 +35,7 @@ export const addCart = cartInfo => async dispatch => {
   }
 };
 
-export const removeCart = cartInfo => async dispatch => {
+export const removeCart = cartInfo => dispatch => {
   try {
     dispatch(removedCart(cartInfo));
   } catch (err) {
@@ -43,7 +43,7 @@ export const removeCart = cartInfo => async dispatch => {
   }
 };
 
-export const editCart = cartInfo => async dispatch => {
+export const editCart = cartInfo => dispatch => {
   try {
     dispatch(editedCart(cartInfo));
   } catch (err) {
