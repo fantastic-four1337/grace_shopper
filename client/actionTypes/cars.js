@@ -1,0 +1,10 @@
+const CARS = {
+    GOT_CARS: 'GOT_CARS',
+    GOT_SINGLECAR: 'GOT_SINGLE_CAR',
+    ADDED_CAR: 'ADDED_CAR',
+    EDITED_CAR: 'EDITED_CAR',
+    REMOVED_CAR:'REMOVED_CAR',
+}
+
+
+export default CARS
