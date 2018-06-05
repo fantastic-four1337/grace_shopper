@@ -1,4 +1,5 @@
 import Users from '../actionTypes/users'
+import axios from 'axios'
 
 export const gotSingleUser = (user) => {
     return {
@@ -21,7 +22,7 @@ export const gotUsers = (users) => {
     }
 }
 
-export const addUser = (user) => {
+export const addedUser = (user) => {
     return {
         type: Users.ADDED_USER,
         payload: {
@@ -31,7 +32,7 @@ export const addUser = (user) => {
     }
 }
 
-export const removeUser = (user) => {
+export const removedUser = (user) => {
     return {
         type: Users.REMOVE_USER,
         payload: {
@@ -41,7 +42,7 @@ export const removeUser = (user) => {
     }
 }
 
-export const editUser = (user) => {
+export const editedUser = (user) => {
     return {
         type: Users.EDITED_USER,
         payload: {
@@ -50,3 +51,4 @@ export const editUser = (user) => {
         }
     }
 }
+
