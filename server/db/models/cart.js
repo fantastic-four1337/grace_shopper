@@ -4,7 +4,7 @@ const db = require('../db')
 
 const Cart = db.define('cart', {
     products: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
         allowNull: false,
 
     },
