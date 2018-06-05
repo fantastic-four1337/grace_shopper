@@ -27,25 +27,28 @@ export const getSingleCart = id => async dispatch => {
   }
 };
 
-export const addCart = cartInfo => dispatch => {
+export const addCart = cartInfo => async dispatch => {
   try {
-    dispatch(addedCart(cartInfo));
+    const newCart = await axios.post(`/api/carts`, cartInfo);
+    dispatch(addedCart(newCart));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const removeCart = cartInfo => dispatch => {
+export const editCart = (id, cartInfo) => async dispatch => {
   try {
-    dispatch(removedCart(cartInfo));
+    const updatedCart = await axios.put(`/api/carts/${id}`, cartInfo);
+    dispatch(editedCart(id, updatedCart));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const editCart = cartInfo => dispatch => {
+export const removeCart = id => async dispatch => {
   try {
-    dispatch(editedCart(cartInfo));
+    await axios.delete(`/api/carts/${id}`, id);
+    dispatch(removedCart(id));
   } catch (err) {
     console.log(err);
   }
