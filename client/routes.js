@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import SingleCar from '../client/components/SingleCar';
+import Cart from '../client/components/cart';
 import { me } from './store';
+import checkOut from '../client/components/checkOut';
+import CarResults from './components/CarResults';
+import SingleCar from '../client/components/SingleCar';
 
 /**
  * COMPONENT
@@ -22,8 +25,13 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        {/* <Route exact path="/cars" component={AllCars} /> */}
+        {/* <Route exact path="/cars" component={AllCars} />
+        <Route path="/cars/:carId" component={SingleCar} /> */}
+        <Route path="/checkout" component={checkOut} />
+        <Route path="/cart" component={Cart} />
+        <Route exact path="/cars" component={CarResults} />
         <Route exact path="/cars/:carId" component={SingleCar} />
+        {/* <Route path="/cars/:carId" component={SingleCar} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
