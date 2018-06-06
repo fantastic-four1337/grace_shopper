@@ -21,6 +21,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
