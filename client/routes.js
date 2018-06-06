@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import Cart from '../client/components/cart'
 import {me} from './store'
+import CarResults from './components/CarResults'
 
 /**
  * COMPONENT
@@ -25,6 +26,8 @@ class Routes extends Component {
         {/* <Route exact path="/cars" component={AllCars} />
         <Route path="/cars/:carId" component={SingleCar} /> */}
         <Route path="/cart" component={Cart} />
+        <Route exact path="/cars" component={CarResults} />
+        {/* <Route path="/cars/:carId" component={SingleCar} /> */}
         {
           isLoggedIn &&
             <Switch>
