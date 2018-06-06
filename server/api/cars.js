@@ -32,25 +32,22 @@ router.post('/', async (req, res, next) => {
 router.put('/:carId', async (req, res, next) => {
   try {
     const targetCar = await Car.findById(req.params.carId);
-    if (req.body.name) {
       const updatedCar = await targetCar.update(req.body);
       res.json(updatedCar);
-    } else {
-      res.status(500).send('Missing necessary information.');
-    }
   } catch (err) {
+    res.status(500).send('Missing necessary information.');
     next(err);
   }
 });
 
 router.delete('/:carId', async (req, res, next) => {
   try {
-    const deletedCar = await Car.destroy({
+    await Car.destroy({
       where: {
         id: req.params.carId
       }
     });
-    res.json(deletedCar);
+    res.sendStatus(204).end()
   } catch (err) {
     next(err);
   }

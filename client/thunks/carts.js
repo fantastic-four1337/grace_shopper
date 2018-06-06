@@ -3,27 +3,33 @@ import {
   gotSingleCart,
   addedCart,
   removedCart,
-  editedCart
+  editedCart,
+  loadedCart,
+  failedCart
 } from '../actionCreators/carts';
 import axios from 'axios';
 
 export const getCarts = () => async dispatch => {
   try {
+    dispatch(loadedCart())
     const allCarts = await axios.get('/api/carts');
     const carts = allCarts.data;
     dispatch(gotCarts(carts));
   } catch (err) {
-    console.log(err);
+      dispatch(failedCart())
+      console.error(err);
   }
 };
 
 export const getSingleCart = id => async dispatch => {
   try {
+    dispatch(loadedCart())
     const singleCart = await axios.get(`/api/carts/${id}`);
     const cart = singleCart.data;
     dispatch(gotSingleCart(cart));
   } catch (err) {
-    console.log(err);
+      dispatch(failedCart())
+      console.error(err);
   }
 };
 
@@ -32,7 +38,8 @@ export const addCart = cartInfo => async dispatch => {
     const newCart = await axios.post(`/api/carts`, cartInfo);
     dispatch(addedCart(newCart));
   } catch (err) {
-    console.log(err);
+      dispatch(failedCart())
+      console.error(err);
   }
 };
 
@@ -41,7 +48,8 @@ export const editCart = (id, cartInfo) => async dispatch => {
     const updatedCart = await axios.put(`/api/carts/${id}`, cartInfo);
     dispatch(editedCart(id, updatedCart));
   } catch (err) {
-    console.log(err);
+      dispatch(failedCart())
+      console.error(err);
   }
 };
 
@@ -50,6 +58,7 @@ export const removeCart = id => async dispatch => {
     await axios.delete(`/api/carts/${id}`, id);
     dispatch(removedCart(id));
   } catch (err) {
-    console.log(err);
+      dispatch(failedCart())
+      console.error(err);
   }
 };

@@ -40,3 +40,17 @@ export const editedCart = (id, cart) => ({
     id
   }
 });
+
+export const loadedCart = () => ({
+  type: CARTS.REQUESTED_CART,
+  payload: {
+    status: 'loading'
+  }
+})
+
+export const failedCart = () => ({
+  type: CARTS.LOAD_FAILED,
+  payload: {
+    status: 'failed'
+  }
+})
