@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
+import CarResults from './components/CarResults'
 
 /**
  * COMPONENT
@@ -21,8 +22,8 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/cars" component={AllCars} />
-        <Route path="/cars/:carId" component={SingleCar} />
+        <Route exact path="/cars" component={CarResults} />
+        {/* <Route path="/cars/:carId" component={SingleCar} /> */}
         {
           isLoggedIn &&
             <Switch>
