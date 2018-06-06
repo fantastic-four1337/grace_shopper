@@ -16,11 +16,9 @@ const Car = db.define('car', {
   },
   color: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   description: {
     type: Sequelize.TEXT,
-    defaultValue: null
   },
   specification: {
     type: Sequelize.TEXT,
@@ -29,9 +27,6 @@ const Car = db.define('car', {
   price: {
     type: Sequelize.INTEGER,
     allowNull: false
-  },
-  rating: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER)
   },
   imageUrl: {
     type: Sequelize.TEXT,

@@ -22,7 +22,6 @@ describe('Car model', () => {
           description: 'Brand New',
           specification: 'V20 engine',
           price: 100000,
-          rating: [5],
           imageUrl:
             'http://www.stingrayforums.com/forum/attachments/purchasing/13098d1411290857-finally-got-my-2015-c7-arctic-white-great-site-great-people-zf1.1.jpg',
           country: 'USA'
@@ -44,10 +43,6 @@ describe('Car model', () => {
       it('year and price to be a number', () => {
         expect(typeof car.year).to.deep.equal('number');
         expect(typeof car.price).to.deep.equal('number');
-      });
-
-      it('requires rating to be an array', () => {
-        expect(Array.isArray(car.rating)).to.be.equal(true);
       });
     }); // end describe('correctPassword')
   }); // end describe('instanceMethods')

@@ -40,3 +40,17 @@ export const removedCar = (id) => ({
         id
     }
 })
+
+export const loadedCar = () => ({
+  type: CARS.REQUESTED_CAR,
+  payload: {
+    status: 'loading'
+  }
+})
+
+export const failedCar = () => ({
+  type: CARS.LOAD_FAILED,
+  payload: {
+    status: 'failed',
+  }
+})

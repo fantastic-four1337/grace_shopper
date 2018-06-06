@@ -1,23 +1,27 @@
-import { gotCars, gotSingleCar, removedCar, editedCar, addedCar } from '../actionCreators/cars.js'
+import { gotCars, gotSingleCar, removedCar, editedCar, addedCar, loadedCar, failedCar } from '../actionCreators/cars.js'
 import axios from 'axios'
 
 export const getCars = () => async dispatch => {
     try {
+        dispatch(loadedCar())
         const allCars = await axios.get('/api/cars')
         const cars = allCars.data;
         dispatch(gotCars(cars))
     } catch (err) {
-        console.log(err)
+        dispatch(failedCar())
+        console.error(err)
     }
 }
 
 export const getSingleCar = (id) => async dispatch => {
     try {
+        dispatch(loadedCar())
         const singleCar = await axios.get(`/api/cars/${id}`)
         const car = singleCar.data
         dispatch(gotSingleCar(car))
     } catch (err) {
-        console.log(err)
+        dispatch(failedCar())
+        console.error(err)
     }
 }
 
@@ -26,7 +30,8 @@ export const addCar = carInfo => async dispatch => {
         const newCar = await axios.post(`/api/cars/`, carInfo)
         dispatch(addedCar(newCar))
     } catch (err) {
-        console.log(err)
+        dispatch(failedCar())
+        console.error(err)
     }
 }
 
@@ -35,7 +40,8 @@ export const editCar = (id, carInfo) => async dispatch => {
         const updatedCar = await axios.put(`/api/cars/${id}`, carInfo)
         dispatch(editedCar(id, updatedCar))
     } catch (err) {
-        console.log(err)
+        dispatch(failedCar())
+        console.error(err)
     }
 }
 
@@ -44,6 +50,7 @@ export const removeCar = id => async dispatch => {
         await axios.delete(`/api/cars/${id}`, id)
         dispatch(removedCar(id))
     } catch (err) {
-        console.log(err)
+        dispatch(failedCar())
+        console.error(err)
     }
 }
