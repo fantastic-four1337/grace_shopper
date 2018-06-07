@@ -10,6 +10,10 @@ const Transaction = db.define('transaction', {
       type: Sequelize.TEXT,
       allowNull: false
   },
+  cardHolder: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   cardType: {
       type: Sequelize.STRING,
       allowNull: false

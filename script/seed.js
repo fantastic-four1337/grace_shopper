@@ -75,7 +75,9 @@ async function seed () {
 
   const transactions = await Promise.all([
     Transaction.create({
-      shippingAddress: ' 12 Alphabet Street Apt. 2A New York, NY 10029',
+      billingAddress: '12 Alphabet Street Apt. 2A New York, NY 10029',
+      shippingAddress: '12 Alphabet Street Apt. 2A New York, NY 10029',
+      cardHolder: 'Bozo J Clown',
       cardType: 'Visa',
       cardNumber: 1234567890,
       expirationDate: '03/11',
