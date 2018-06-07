@@ -4,7 +4,7 @@ import CARS from '../actionTypes/cars';
 const initialState = {
   cars: [],
   singleCar: {},
-  status: ''
+  status: 'unasked'
 };
 
 // Reducer

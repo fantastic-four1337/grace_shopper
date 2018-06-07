@@ -3,7 +3,7 @@ import CARTS from '../actionTypes/cart';
 const initialState = {
   carts: [],
   cart: {},
-  status: ''
+  status: 'unaasked'
 };
 
 export default function(state = initialState, action) {
