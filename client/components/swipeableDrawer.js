@@ -7,6 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { logout } from '../store';
 
 const styles = {
   list: {
@@ -40,6 +42,8 @@ class SwipeableTemporaryDrawer extends React.Component {
         <List ><Link to="/cart">Cart</Link></List>
         <Divider />
         <List ><Link to="/checkout">Checkout</Link></List>
+        <Divider />
+        <List onClick={this.props.handleClick}>Logout</List>
       </div>
     );
     const loggedOutList = (
@@ -52,7 +56,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         <Divider />
         <List ><Link to="/cart">Cart</Link></List>
         <Divider />
-        <List ><Link to="/checkout">Checkout</Link></List>
+        <List><Link to="/checkout">Checkout</Link></List>
       </div>
     );
 
@@ -85,8 +89,25 @@ class SwipeableTemporaryDrawer extends React.Component {
   }
 }
 
+const mapState = state => {
+  return {
+    isLoggedIn: !!state.user.id
+  };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    handleClick() {
+      dispatch(logout());
+    }
+  };
+};
+
 SwipeableTemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SwipeableTemporaryDrawer);
+export default withStyles(styles)(connect(
+  mapState,
+  mapDispatch
+)(SwipeableTemporaryDrawer));

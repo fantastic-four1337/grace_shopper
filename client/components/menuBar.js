@@ -10,8 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SwipeableDrawer from './swipeableDrawer'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { logout } from '../store';
+
 
 const styles = {
   root: {
@@ -45,7 +44,7 @@ class MenuAppBar extends React.Component {
 
   render() {
 
-    const { classes, handleClick } = this.props;
+    const { classes } = this.props;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -53,7 +52,7 @@ class MenuAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static" >
           <Toolbar>
-            <SwipeableDrawer isLoggedIn={this.props.isLoggedIn} onClick={handleClick} />
+            <SwipeableDrawer />
             <Typography variant="title" color="inherit" className={classes.flex}>
               Car Gurus
             </Typography>
@@ -97,30 +96,11 @@ class MenuAppBar extends React.Component {
   }
 }
 
-const mapState = state => {
-  return {
-    isLoggedIn: !!state.user.id
-  };
-};
-
-const mapDispatch = dispatch => {
-  return {
-    handleClick() {
-      dispatch(logout());
-    }
-  };
-};
-
-export default withStyles(styles)(connect(
-  mapState,
-  mapDispatch
-)(MenuAppBar));
+export default withStyles(styles)(MenuAppBar);
 
 /**
  * PROP TYPES
  */
 MenuAppBar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired
 };
