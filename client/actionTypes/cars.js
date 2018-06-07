@@ -8,5 +8,4 @@ const CARS = {
     LOAD_FAILED: 'LOAD_FAILED',
 }
 
-
-export default CARS
+export default CARS;
