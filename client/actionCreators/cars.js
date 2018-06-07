@@ -8,13 +8,13 @@ export const gotCars = cars => ({
   }
 });
 
-export const gotSingleCar = car => ({
-  type: CARS.GOT_SINGLECAR,
-  payload: {
-    status: 'loaded',
-    car
-  }
-});
+export const gotSingleCar = (car) => ({
+    type: CARS.GOT_SINGLECAR,
+    payload: {
+        status: 'loaded',
+        car
+    }
+})
 
 export const addedCar = newCar => ({
   type: CARS.ADDED_CAR,
