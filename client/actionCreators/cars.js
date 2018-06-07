@@ -1,4 +1,4 @@
-import { CARS } from './actionTypes'
+import CARS from '../actionTypes/cars'
 
 export const gotCars = (cars) => ({
     type: CARS.GOT_CARS,
@@ -9,7 +9,7 @@ export const gotCars = (cars) => ({
 })
 
 export const gotSingleCar = (car) => ({
-    type: CARS.GOT_SINGLE_CAR,
+    type: CARS.GOT_SINGLECAR,
     payload: {
         status: 'loaded',
         car

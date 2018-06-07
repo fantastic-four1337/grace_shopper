@@ -6,6 +6,7 @@ export const getCars = () => async dispatch => {
         dispatch(loadedCar())
         const allCars = await axios.get('/api/cars')
         const cars = allCars.data;
+        console.log(cars)
         dispatch(gotCars(cars))
     } catch (err) {
         dispatch(failedCar())
