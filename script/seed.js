@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Car, Cart} = require('../server/db/models')
+const { User, Car, Cart, Transaction } = require('../server/db/models')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -39,7 +39,7 @@ async function seed () {
       price: 100000,
       imageUrl:
         'http://www.stingrayforums.com/forum/attachments/purchasing/13098d1411290857-finally-got-my-2015-c7-arctic-white-great-site-great-people-zf1.1.jpg',
-      country: 'USA'
+      country: 'USA',
     }),
     Car.create({
       name: 'Mustang',
@@ -51,7 +51,7 @@ async function seed () {
       price: 100500,
       imageUrl:
         'http://st.motortrend.com/uploads/sites/5/2018/05/2018-Ford-Mustang-GT-Performance-Pack-2-front-three-quarter-e1526508541250.jpg?interpolation=lanczos-none&fit=around|660:440',
-      country: 'USA'
+      country: 'USA',
     }),
     Car.create({
       name: 'Camry',
@@ -63,13 +63,26 @@ async function seed () {
       price: 7,
       imageUrl:
         'https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/USB50TOC021E0101.jpg',
-      country: 'USA'
+      country: 'USA',
     })
 
   ])
 
   const carts = await Promise.all([
-    Cart.create({products: [1], subTotal: 100000.00, total: 100000.00 * 1.085, tax: 100000.00 * 0.085}),
+    Cart.create({subTotal: 100000.00, total: 100000.00 * 1.085, tax: 100000.00 * 0.085}),
+    Cart.create({subTotal: 100000.00, total: 100000.00 * 1.085, tax: 100000.00 * 0.085})
+  ])
+
+  const transactions = await Promise.all([
+    Transaction.create({
+      billingAddress: '12 Alphabet Street Apt. 2A New York, NY 10029',
+      shippingAddress: '12 Alphabet Street Apt. 2A New York, NY 10029',
+      cardHolder: 'Bozo J Clown',
+      cardType: 'Visa',
+      cardNumber: 1234567890,
+      expirationDate: '03/11',
+      csv: 311,
+    }),
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
@@ -78,6 +91,8 @@ async function seed () {
   console.log(`seeded ${cars.length} cars`)
   console.log(`seeded successfully`)
   console.log(`seeded ${carts.length} carts`)
+  console.log(`seeded successfully`)
+  console.log(`seeded ${transactions.length} transactions`)
   console.log(`seeded successfully`)
 }
 
