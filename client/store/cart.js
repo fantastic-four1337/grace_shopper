@@ -1,9 +1,9 @@
-import CARTS from '../actionTypes/cart';
+import CARTS from '../actionTypes/carts';
 
 const initialState = {
   carts: [],
   cart: {},
-  status: 'unaasked'
+  status: 'unasked'
 };
 
 export default function(state = initialState, action) {
