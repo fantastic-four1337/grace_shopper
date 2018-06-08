@@ -43,9 +43,23 @@ function SimpleUserCarCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Edit
+          <Link to={{
+                pathname: `/editcar/${car.id}`,
+                state: {id: car.id,
+                name: car.name,
+                model: car.model,
+                year: car.year,
+                color: car.color,
+                imageUrl: car.imageUrl,
+                description: car.description,
+                specification: car.specification,
+                price: car.price,
+                country: car.country
+              }
+            }}>
+          <Button size="small" color="primary">Edit 
           </Button>
+          </Link>
           <Button size="small" color="primary">
             Remove
           </Button>

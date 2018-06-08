@@ -30,14 +30,11 @@ class Routes extends Component {
           {/* Routes placed here are available to all visitors */}
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          {/* <Route exact path="/cars" component={AllCars} />
-        <Route path="/cars/:carId" component={SingleCar} /> */}
           <Route path="/checkout" component={checkOut} />
           <Route path="/cart" component={Cart} />
           <Route exact path="/cars" component={CarResults} />
           <Route exact path="/cars/:carId" component={SingleCar} />
           <Route exact path="/editcar/:carId" component={EditCar} />
-          {/* <Route path="/cars/:carId" component={SingleCar} /> */}
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
