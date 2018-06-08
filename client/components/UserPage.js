@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-import SimpleCarCard from './SimpleCarCard'
+import SimpleUserCarCard from './SimpleUserCarCard'
 import { getCars } from '../thunks/cars.js'
 import { getSingleCart } from '../thunks/carts'
 import { Link } from 'react-router-dom'
@@ -32,10 +32,10 @@ class UserPage extends Component {
       <div>
           <div className={classes.rowOfCars}>
           {
-              cars.map(car => <SimpleCarCard key={car.id} car={car} />)
+              cars.map(car => <SimpleUserCarCard key={car.id} car={car} />)
           }
           </div>
-        <Link><button type="button">Add Car</button></Link>
+        <Link to="/addCar"><button type="button">Add Car</button></Link>
       </div>
     );
   }
