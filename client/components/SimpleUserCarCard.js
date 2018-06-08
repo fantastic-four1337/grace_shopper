@@ -24,7 +24,7 @@ const styles = {
   }
 };
 
-function SimpleCarCard(props) {
+function SimpleUserCarCard(props) {
   const { classes, car } = props;
   return (
     <div>
@@ -44,10 +44,10 @@ function SimpleCarCard(props) {
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">
-            Quick Buy
+            Edit
           </Button>
           <Button size="small" color="primary">
-            Add to Cart
+            Remove
           </Button>
         </CardActions>
       </Card>
@@ -55,8 +55,8 @@ function SimpleCarCard(props) {
   );
 }
 
-SimpleCarCard.propTypes = {
+SimpleUserCarCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleCarCard);
+export default withStyles(styles)(SimpleUserCarCard);
