@@ -8,6 +8,7 @@ import { me } from './store';
 import checkOut from '../client/components/checkOut';
 import CarResults from './components/CarResults';
 import SingleCar from '../client/components/SingleCar';
+import EditCar from '../client/components/EditCar';
 
 /**
  * COMPONENT
@@ -19,30 +20,33 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-    console.log(this.props)
-    if (status === 'unasked') return null
-    if (status === 'loading') { return <div>Loading</div>
-    } else { return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        {/* <Route exact path="/cars" component={AllCars} />
+    console.log(this.props);
+    if (status === 'unasked') return null;
+    if (status === 'loading') {
+      return <div>Loading</div>;
+    } else {
+      return (
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          {/* <Route exact path="/cars" component={AllCars} />
         <Route path="/cars/:carId" component={SingleCar} /> */}
-        <Route path="/checkout" component={checkOut} />
-        <Route path="/cart" component={Cart} />
-        <Route exact path="/cars" component={CarResults} />
-        <Route exact path="/cars/:carId" component={SingleCar} />
-        {/* <Route path="/cars/:carId" component={SingleCar} /> */}
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
-      </Switch>
+          <Route path="/checkout" component={checkOut} />
+          <Route path="/cart" component={Cart} />
+          <Route exact path="/cars" component={CarResults} />
+          <Route exact path="/cars/:carId" component={SingleCar} />
+          <Route exact path="/editcar/:carId" component={EditCar} />
+          {/* <Route path="/cars/:carId" component={SingleCar} /> */}
+          {isLoggedIn && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route path="/home" component={UserHome} />
+            </Switch>
+          )}
+          {/* Displays our Login component as a fallback */}
+          <Route component={Login} />
+        </Switch>
       );
     }
   }
@@ -55,7 +59,7 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id
   };
 };
 
@@ -63,7 +67,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me());
-    },
+    }
   };
 };
 

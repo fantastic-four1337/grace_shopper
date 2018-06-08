@@ -17,6 +17,9 @@ const styles = {
   fullList: {
     width: 'auto',
   },
+  logoutButton: {
+    color: 'blue',
+  }
 };
 
 class SwipeableTemporaryDrawer extends React.Component {
@@ -35,7 +38,7 @@ class SwipeableTemporaryDrawer extends React.Component {
     console.log(this.props)
     const loggedInList = (
       <div className={classes.list}>
-        <List ><Link to="/">Home</Link></List>
+        <List ><Link to="/home">Home</Link></List>
         <Divider />
         <List ><Link to="/cars">Cars</Link></List>
         <Divider />
@@ -43,7 +46,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         <Divider />
         <List ><Link to="/checkout">Checkout</Link></List>
         <Divider />
-        <List onClick={this.props.handleClick}>Logout</List>
+        <List onClick={this.props.handleClick} className={classes.logoutButton}>Logout</List>
       </div>
     );
     const loggedOutList = (
