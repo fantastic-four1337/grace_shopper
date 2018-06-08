@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "grace_shopper-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: car-gurus # see README
+  api_key:
+    secure: Q9CAyWnIIgx+mJNZDUIilP0gN8lwyjAU5m4vsw9GpNkGSXWU9cLWH3PHe5jlGPwHUQTM+d8k4U20c/kJ9n7TtPUoDKWS4RjSZX55ePtpOah9MxSyXsjE22XUHNmseqkxm/EpM0qtG8z4j+FseH9lfF2+4CNz1dmQX8r8ss3w8B44Mv5Q7bPAMPve2vvLCLTG0fQ7YSal3Pjv6EdWdivXlWeKQ30DiMvGWWofu1MmQ/cInrvkDpCJ3NqIYgTzHXaVw83TLtIYanCH1/6IoPnwgYka+I1wo5ROwF+z1gtcd+vcPPxRENM/j5XhePaPfuvNn0bVSII7a5NN5E3+/DwfHSq3/JrGkz51wt+j/QFxYllMv1zPltcZmPu4Cv+GOG3UGuSLb8iIFKLnyHKVeLh4W7F8mE8Ipmab2kgXbheD4D35klu398XQkqKQzh4zS8oDv798P6wdiPMiPzMhn7WcLdp2xRathL3Cbja+ddeObJr/51DF8Q3Ul8Qp+jOk+Ymm3kuqsb7tL4SbZ/+IiqGAcxmvyWyP6SRtxmGsIe7qOj7LnYOssPLxiXnKm18fN5zBvKZB5ykWmlf6VTDWdJcqNVbpBZX/fLOpXgWVvTcTqfv/83ml4BWPRR62fuDjzwVYnp0NnMsin7j1k5VEgey3TfGIf6y+5mtjjKDjz6JgLJA= # see README
