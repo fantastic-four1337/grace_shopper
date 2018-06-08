@@ -4,13 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SwipeableDrawer from './swipeableDrawer'
 import { Link } from 'react-router-dom'
-
+import { connect } from 'react-redux'
 
 const styles = {
   root: {
@@ -57,18 +55,22 @@ class MenuAppBar extends React.Component {
           <Toolbar>
             <SwipeableDrawer />
             <Typography variant="title" color="inherit" className={classes.flex}>
-              <Link to="/" className={classes.link}>Car Gurus</Link>
+              {
+                this.props.isLoggedIn ?
+                <Link to='/home' className={classes.link}>Car Gurus</Link> :
+                <span>Car Gurus</span>
+                }
             </Typography>
             {auth && (
               <div>
-                <IconButton
+                {/* <IconButton
                   aria-owns={open ? 'profile-menu' : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
                 >
                   <AccountCircle />
-                </IconButton>
+                </IconButton> */}
                 <Menu
                   id="profile-menu"
                   anchorEl={anchorEl}
@@ -99,7 +101,15 @@ class MenuAppBar extends React.Component {
   }
 }
 
-export default withStyles(styles)(MenuAppBar);
+const mapState = state => {
+  return {
+    isLoggedIn: !!state.user.id
+  };
+};
+
+export default withStyles(styles)(connect(
+  mapState
+)(MenuAppBar));
 
 /**
  * PROP TYPES
