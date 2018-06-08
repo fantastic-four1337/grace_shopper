@@ -12,10 +12,22 @@ const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
 describe('userReducer', () => {
-  it.only('starts with an initital state of an empty user', () => {
+  it('starts with an initital state of an empty user', () => {
     const newState = reducer(undefined, '@@INIT') // '@@INIT': the first action that is ever dispatched to any redux store is @@INIT
     expect(newState).to.deep.equal({})
   })
+
+  it('sets the state to be a user on the state when a GET_USER action is dispatched', () => {
+   const user = { email: 'g@g.com' } 
+    const newState = reducer({}, getUser(user))
+    expect(newState).to.deep.equal(user)
+  })
+
+  it('removes a user on the state when a removeUser action is dispatched', () => {
+    const user = { email: 'g@g.com' } 
+     const newState = reducer({}, removeUser(user))
+     expect(newState).to.deep.equal({})
+   })
 })
 
 describe('thunk creators', () => {
