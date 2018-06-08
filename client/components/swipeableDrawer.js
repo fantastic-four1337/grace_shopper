@@ -17,6 +17,9 @@ const styles = {
   fullList: {
     width: 'auto',
   },
+  logoutButton: {
+    color: 'blue',
+  }
 };
 
 class SwipeableTemporaryDrawer extends React.Component {
@@ -43,7 +46,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         <Divider />
         <List ><Link to="/checkout">Checkout</Link></List>
         <Divider />
-        <List onClick={this.props.handleClick}>Logout</List>
+        <List onClick={this.props.handleClick} className={classes.logoutButton}>Logout</List>
       </div>
     );
     const loggedOutList = (
