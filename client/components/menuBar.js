@@ -23,6 +23,9 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  link: {
+    color: 'white'
+  }
 };
 
 class MenuAppBar extends React.Component {
@@ -54,7 +57,7 @@ class MenuAppBar extends React.Component {
           <Toolbar>
             <SwipeableDrawer />
             <Typography variant="title" color="inherit" className={classes.flex}>
-              Car Gurus
+              <Link to="/" className={classes.link}>Car Gurus</Link>
             </Typography>
             {auth && (
               <div>

@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom'
 
 const styles = {
   card: {
@@ -18,6 +19,9 @@ const styles = {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  link: {
+    color: 'blue',
+  }
 };
 
 function SimpleCarCard(props) {
@@ -32,7 +36,7 @@ function SimpleCarCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            {car.name}
+            <Link to={`/cars/${car.id}`} className={classes.link}>{car.name}</Link>
           </Typography>
           <Typography component="p">
             {car.description}

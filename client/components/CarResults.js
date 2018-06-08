@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import SimpleCarCard from './SimpleCarCard'
 import { getCars } from '../thunks/cars.js'
+import { Link } from 'react-router-dom'
 
   const styles = {
     card: {
