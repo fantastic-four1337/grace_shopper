@@ -38,7 +38,7 @@ class SwipeableTemporaryDrawer extends React.Component {
     console.log(this.props)
     const loggedInList = (
       <div className={classes.list}>
-        <List ><Link to="/">Home</Link></List>
+        <List ><Link to="/home">Home</Link></List>
         <Divider />
         <List ><Link to="/cars">Cars</Link></List>
         <Divider />
