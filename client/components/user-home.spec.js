@@ -19,4 +19,9 @@ describe('UserHome', () => {
   it('renders the email in an h3', () => {
     expect(userHome.find('h3').text()).to.be.equal('Welcome, cody@email.com')
   })
+  
+  it('renders the email in an h3 (not hardcoded)',() => {
+    const userHome2 = shallow(<UserHome email="g@g.net" />)
+    expect(userHome2.find('h3').text()).to.be.equal('Welcome, g@g.net')
+  })
 })
