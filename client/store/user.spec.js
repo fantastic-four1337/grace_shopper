@@ -1,7 +1,7 @@
 /* global describe beforeEach afterEach it */
 
 import {expect} from 'chai'
-import {me, logout} from './user'
+import reducer, {me, logout, getUser, removeUser} from './user'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -10,6 +10,13 @@ import history from '../history'
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
+
+describe('userReducer', () => {
+  it.only('starts with an initital state of an empty user', () => {
+    const newState = reducer(undefined, '@@INIT') // '@@INIT': the first action that is ever dispatched to any redux store is @@INIT
+    expect(newState).to.deep.equal({})
+  })
+})
 
 describe('thunk creators', () => {
   let store
