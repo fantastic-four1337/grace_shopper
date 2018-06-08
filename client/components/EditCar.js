@@ -51,34 +51,9 @@ class EditCar extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.carId;
-    this.props.fetchSingleCar(id);
-  }
-
-  UNSAVED_componentWillReceiveProps(nextProps) {
-    console.log('nextProps!!!', nextProps);
-    const {
-      name,
-      model,
-      year,
-      color,
-      imageUrl,
-      description,
-      specification,
-      price,
-      country
-    } = nextProps.singleCar;
-    this.setState({
-      name,
-      model,
-      year,
-      color,
-      imageUrl,
-      description,
-      specification,
-      price,
-      country
-    });
+    // const id = this.props.match.params.carId;
+    // this.props.fetchSingleCar(id);
+    this.setState(this.props.history.location.state)
   }
 
   handleChange(event) {
@@ -107,8 +82,8 @@ class EditCar extends Component {
       specification,
       price,
       country
-    } = this.props.singleCar;
-
+    } = this.state;
+    console.log('state', this.props)
     return (
       <div className="container">
         <form className={classes.container} noValidate autoComplete="off">
