@@ -28,8 +28,8 @@ class UserPage extends Component {
   }
 
   render() {
-    const { classes, cars } = this.props
-    console.log(cars)
+    const { classes, userId } = this.props
+    const cars = this.props.cars.filter(car => car.userId === userId )
     return (
       <div>
           <div className={classes.rowOfCars}>
@@ -37,7 +37,13 @@ class UserPage extends Component {
               cars.map(car => <SimpleUserCarCard key={car.id} car={car} />)
           }
           </div>
-        <Link to="/addCar"><AddButton className={classes.buttonFloat} /></Link>
+        <Link to={{
+          pathname: "/addCar",
+          state: {
+            userId,
+        }
+        }}><button type="button">Add Car</button>
+        </Link>
       </div>
     );
   }
