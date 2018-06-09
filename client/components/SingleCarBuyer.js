@@ -63,7 +63,7 @@ class SingleCar extends Component {
           />
           <CardContent className={classes.paper}>
             <Typography gutterBottom variant="display3" component="h2">
-              {name}
+              {name} {model}
             </Typography>
             <Typography component="p">Model: {model}</Typography>
             <Typography component="p">Year: {year}</Typography>
