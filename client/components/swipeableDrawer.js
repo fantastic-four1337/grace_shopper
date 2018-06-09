@@ -61,7 +61,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         </List>
       </div>
     );
-    
+
     const loggedOutList = (
       <div className={classes.list}>
         <List>
@@ -81,7 +81,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         </List>
         <Divider />
         <List>
-          <Link to="/checkout">Checkout</Link>
+          <Link to="/guest-checkout">Guest Checkout</Link>
         </List>
       </div>
     );
