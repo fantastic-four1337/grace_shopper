@@ -48,7 +48,8 @@ export const addCar = carInfo => async dispatch => {
 export const editCar = (id, carInfo) => async dispatch => {
   try {
     const updatedCar = await axios.put(`/api/cars/${id}`, carInfo);
-    dispatch(editedCar(id, updatedCar));
+    const { data } = updatedCar;
+    dispatch(editedCar(id, data));
   } catch (err) {
     dispatch(failedCar());
     console.error(err);
