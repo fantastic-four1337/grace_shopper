@@ -32,12 +32,10 @@ export default function(state = initialState, action) {
       };
     }
     case CARS.EDITED_CAR: {
+      console.log(state.cars);
       return {
         ...state,
-        cars: [
-          ...state.cars.filter(car => car.id !== action.payload.id),
-          action.payload.car
-        ]
+        cars: [...state.cars, action.payload.car]
       };
     }
     case CARS.REMOVED_CAR: {
