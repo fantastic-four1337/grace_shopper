@@ -5,6 +5,7 @@ import SimpleUserCarCard from './SimpleUserCarCard'
 import { getCars } from '../thunks/cars.js'
 import { getSingleCart } from '../thunks/carts'
 import { Link } from 'react-router-dom'
+import AddButton from './AddButton'
 
 const styles = {
     card: {
@@ -17,7 +18,7 @@ const styles = {
     rowOfCars: {
         display: 'flex',
         flexWrap: 'wrap'
-    }
+    },
   };
 
 class UserPage extends Component {
