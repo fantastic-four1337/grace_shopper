@@ -5,6 +5,7 @@ import SimpleUserCarCard from './SimpleUserCarCard';
 import { getCars } from '../thunks/cars.js';
 import { getSingleCart } from '../thunks/carts';
 import { Link } from 'react-router-dom';
+import AddButton from './AddButton'
 
 const styles = {
   card: {
@@ -17,7 +18,15 @@ const styles = {
   rowOfCars: {
     display: 'flex',
     flexWrap: 'wrap'
-  }
+  },
+  buttonFloat: {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed',
+    }
 };
 
 class UserPage extends Component {
@@ -41,7 +50,7 @@ class UserPage extends Component {
             }
           }}
         >
-          <button type="button">Add Car</button>
+          <AddButton className={classes.buttonFloat} />
         </Link>
       </div>
     );

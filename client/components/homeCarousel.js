@@ -13,10 +13,9 @@ const styles = theme => ({
     paddingTop: 16,
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3,
-    display: 'flex'
   }),
   paperText: {
-    justifyContent: 'center'
+    textAlign: 'center',
   }
 });
 
