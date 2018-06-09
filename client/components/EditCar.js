@@ -80,7 +80,7 @@ class EditCar extends Component {
       price,
       country
     } = this.state;
-    console.log('state', this.props);
+
     return (
       <div className="container">
         <form className={classes.container} noValidate autoComplete="off">

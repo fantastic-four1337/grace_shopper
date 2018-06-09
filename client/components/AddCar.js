@@ -43,7 +43,7 @@ class AddCar extends Component {
       specification: '',
       price: 0,
       country: '',
-      userId: 0,
+      userId: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -82,7 +82,6 @@ class AddCar extends Component {
       userId
     } = this.state;
 
-    // console.log(userId)
     return (
       <div className="container">
         <form className={classes.container} noValidate autoComplete="off">
