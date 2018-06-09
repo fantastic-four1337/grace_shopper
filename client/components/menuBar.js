@@ -6,20 +6,20 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import SwipeableDrawer from './swipeableDrawer'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import SwipeableDrawer from './swipeableDrawer';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const styles = {
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   flex: {
-    flex: 1,
+    flex: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 20
   },
   link: {
     color: 'white'
@@ -27,9 +27,7 @@ const styles = {
 };
 
 class MenuAppBar extends React.Component {
-  state = {
-
-  };
+  state = {};
 
   handleChange = (event, checked) => {
     this.setState({ auth: checked });
@@ -44,22 +42,27 @@ class MenuAppBar extends React.Component {
   };
 
   render() {
-
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" >
+        <AppBar position="static">
           <Toolbar>
             <SwipeableDrawer />
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              {
-                this.props.isLoggedIn ?
-                <Link to='/home' className={classes.link}>Car Gurus</Link> :
+            <Typography
+              variant="title"
+              color="inherit"
+              className={classes.flex}
+            >
+              {this.props.isLoggedIn ? (
+                <Link to="/cars" className={classes.link}>
+                  Car Gurus
+                </Link>
+              ) : (
                 <span>Car Gurus</span>
-                }
+              )}
             </Typography>
             {auth && (
               <div>
@@ -76,20 +79,20 @@ class MenuAppBar extends React.Component {
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'right'
                   }}
                   transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'right'
                   }}
                   open={open}
                   onClose={this.handleClose}
                 >
                   <MenuItem onClick={this.handleClose}>
-                    <Link to="/login" >Login</Link>
+                    <Link to="/login">Login</Link>
                   </MenuItem>
                   <MenuItem onClick={this.handleClose}>
-                    <Link to="/users" >Student Login</Link>
+                    <Link to="/users">Student Login</Link>
                   </MenuItem>
                 </Menu>
               </div>
@@ -107,9 +110,7 @@ const mapState = state => {
   };
 };
 
-export default withStyles(styles)(connect(
-  mapState
-)(MenuAppBar));
+export default withStyles(styles)(connect(mapState)(MenuAppBar));
 
 /**
  * PROP TYPES

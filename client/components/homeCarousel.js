@@ -1,3 +1,4 @@
+//HOME CAROUSEL JS
 import React, { Component } from 'react';
 import { Carousel } from 'react-responsive-carousel'
 import { connect } from 'react-redux';
@@ -12,7 +13,7 @@ const styles = theme => ({
     paddingTop: 16,
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3,
-    display: 'flext'
+    display: 'flex'
   }),
   paperText: {
     justifyContent: 'center'

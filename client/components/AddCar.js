@@ -29,20 +29,21 @@ const styles = theme => ({
   }
 });
 
-class EditCar extends Component {
+class AddCar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: '',
       model: '',
-      year: '',
+      year: 0,
       color: '',
       imageUrl: '',
       description: '',
       specification: '',
-      price: '',
-      country: ''
+      price: 0,
+      country: '',
+      userId: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -77,7 +78,8 @@ class EditCar extends Component {
       description,
       specification,
       price,
-      country
+      country,
+      userId
     } = this.state;
 
     return (
@@ -215,7 +217,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-EditCar.propTypes = {
+AddCar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -223,5 +225,5 @@ export default withStyles(styles)(
   connect(
     null,
     mapDispatchToProps
-  )(EditCar)
+  )(AddCar)
 );
