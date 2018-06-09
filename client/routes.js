@@ -7,9 +7,10 @@ import Cart from '../client/components/cart';
 import { me } from './store';
 import checkOut from '../client/components/checkOut';
 import CarResults from './components/CarResults';
-import SingleCar from '../client/components/SingleCar';
+import SingleCarBuyer from '../client/components/SingleCarBuyer';
 import EditCar from '../client/components/EditCar';
 import AddCar from '../client/components/AddCar';
+import SingleCarOwner from './components/SingleCarOwner';
 
 /**
  * COMPONENT
@@ -34,13 +35,14 @@ class Routes extends Component {
           <Route path="/checkout" component={checkOut} />
           <Route path="/cart" component={Cart} />
           <Route exact path="/cars" component={CarResults} />
-          <Route exact path="/cars/:carId" component={SingleCar} />
+          <Route exact path="/cars/:carId" component={SingleCarBuyer} />
           <Route exact path="/editcar/:carId" component={EditCar} />
           <Route exact path="/addcar" component={AddCar} />
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
+              <Route exact path="/home" component={UserHome} />
+              <Route path="/home/:carId" component={SingleCarOwner} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
