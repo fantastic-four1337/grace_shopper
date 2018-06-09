@@ -79,7 +79,7 @@ const columnData = [
   { id: 'price', numeric: true, disablePadding: false, label: 'Price' }
 ];
 
-class EnhancedTableHead extends React.Component {
+class Cart extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -127,7 +127,7 @@ class EnhancedTableHead extends React.Component {
   }
 }
 
-EnhancedTableHead.propTypes = {
+Cart.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
@@ -402,8 +402,8 @@ class EnhancedTable extends React.Component {
   }
 }
 
-EnhancedTable.propTypes = {
+Cart.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EnhancedTable);
+export default withStyles(styles)(Cart);

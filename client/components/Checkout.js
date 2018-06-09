@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -59,10 +61,11 @@ const styles = theme => ({
   }
 });
 
-class Cart extends Component {
+class CheckOut extends Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     const { classes } = this.props;
     const bull = <span className={classes.bullet}>•</span>;
@@ -126,8 +129,18 @@ class Cart extends Component {
   }
 }
 
-Cart.propTypes = {
+CheckOut.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Cart);
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(CheckOut)
+);

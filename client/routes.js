@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import Cart from '../client/components/cart';
+import Cart from '../client/components/Cart';
 import { me } from './store';
-import checkOut from '../client/components/checkOut';
+import Checkout from '../client/components/Checkout';
 import CarResults from './components/CarResults';
 import SingleCarBuyer from '../client/components/SingleCarBuyer';
 import EditCar from '../client/components/EditCar';
@@ -32,7 +32,7 @@ class Routes extends Component {
           <Route exact path="/" component={CarResults} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/checkout" component={checkOut} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/cart" component={Cart} />
           <Route exact path="/cars" component={CarResults} />
           <Route exact path="/cars/:carId" component={SingleCarBuyer} />

@@ -79,7 +79,6 @@ class AddCar extends Component {
       specification,
       price,
       country,
-      userId
     } = this.state;
 
     // console.log(userId)

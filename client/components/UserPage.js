@@ -38,7 +38,7 @@ class UserPage extends Component {
           }
           </div>
         <Link to={{
-          pathname: "/addCar",
+          pathname: '/addCar',
           state: {
             userId,
         }
