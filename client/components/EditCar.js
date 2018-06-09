@@ -50,8 +50,6 @@ class EditCar extends Component {
   }
 
   componentDidMount() {
-    // const id = this.props.match.params.carId;
-    // this.props.fetchSingleCar(id);
     this.setState(this.props.history.location.state);
   }
 
@@ -209,10 +207,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchSingleCar: id => dispatch(getSingleCar(id)),
-    updateCar: (id, updatedCar) => dispatch(editCar(id, updatedCar))
+    updateCar: (id, updatedCar) =>
+      dispatch(editCar(id, updatedCar)).then(() => {
+        ownProps.history.push('/home');
+      })
   };
 };
 

@@ -28,6 +28,7 @@ class UserPage extends Component {
 
   render() {
     const { classes, cars } = this.props
+    console.log(cars)
     return (
       <div>
           <div className={classes.rowOfCars}>
