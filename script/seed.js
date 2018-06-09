@@ -138,15 +138,35 @@ async function seed() {
 
   const carts = await Promise.all([
     Cart.create({
-      subTotal: 100000.0,
-      total: 100000.0 * 1.085,
-      tax: 100000.0 * 0.085
+      subTotal: 0,
+      total: 0,
+      tax: 0,
+      userId: 1
     }),
     Cart.create({
-      subTotal: 100000.0,
-      total: 100000.0 * 1.085,
-      tax: 100000.0 * 0.085
-    })
+      subTotal: 0,
+      total: 0,
+      tax: 0,
+      userId: 2
+    }),
+    Cart.create({
+      subTotal: 0,
+      total: 0,
+      tax: 0,
+      userId: 3
+    }),
+    Cart.create({
+      subTotal: 0,
+      total: 0,
+      tax: 0,
+      userId: 4
+    }),
+    Cart.create({
+      subTotal: 0,
+      total: 0,
+      tax: 0,
+      userId: 5
+    }),
   ]);
 
   const transactions = await Promise.all([
