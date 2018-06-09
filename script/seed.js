@@ -28,6 +28,8 @@ async function seed() {
     User.create({ email: 'harry@email.com', password: 'potter' })
   ]);
 
+  const id = () => Math.round(Math.random() * (users.length - 1)) + 1;
+
   const cars = await Promise.all([
     Car.create({
       name: 'Chevy',
@@ -39,7 +41,8 @@ async function seed() {
       price: 98500,
       imageUrl:
         'http://www.stingrayforums.com/forum/attachments/purchasing/13098d1411290857-finally-got-my-2015-c7-arctic-white-great-site-great-people-zf1.1.jpg',
-      country: 'USA'
+      country: 'USA',
+      userId: id()
     }),
     Car.create({
       name: 'Ford',
@@ -51,7 +54,8 @@ async function seed() {
       price: 74000,
       imageUrl:
         'http://st.motortrend.com/uploads/sites/5/2018/05/2018-Ford-Mustang-GT-Performance-Pack-2-front-three-quarter-e1526508541250.jpg?interpolation=lanczos-none&fit=around|660:440',
-      country: 'USA'
+      country: 'USA',
+      userId: id()
     }),
     Car.create({
       name: 'Toyota',
@@ -63,7 +67,8 @@ async function seed() {
       price: 28750,
       imageUrl:
         'https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/USB50TOC021E0101.jpg',
-      country: 'USA'
+      country: 'USA',
+      userId: id()
     }),
     Car.create({
       name: 'Lamborghini ',
@@ -75,7 +80,8 @@ async function seed() {
       price: 184500,
       imageUrl:
         'https://car-images.bauersecure.com/pagefiles/67486/1040x585/lm-001.jpg',
-      country: 'Italy'
+      country: 'Italy',
+      userId: id()
     }),
     Car.create({
       name: 'Bugatti',
@@ -87,7 +93,8 @@ async function seed() {
       price: 2966575,
       imageUrl:
         'https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/bugatti-chiron.jpg?itok=ev4ISo0P',
-      country: 'Italy'
+      country: 'Italy',
+      userId: id()
     }),
     Car.create({
       name: 'BMW',
@@ -99,7 +106,8 @@ async function seed() {
       price: 66500,
       imageUrl:
         'https://dqc7wek3c8i9z.cloudfront.net/uploads/5f9805f6928964c36285b8cd8d66c082.jpg',
-      country: 'Germany'
+      country: 'Germany',
+      userId: id()
     }),
     Car.create({
       name: 'Porsche',
@@ -111,7 +119,8 @@ async function seed() {
       price: 87700,
       imageUrl:
         'http://b9ed5af805e29a5074bf-298613918ac10dd8380d273c03a66c3b.r3.cf1.rackcdn.com/WP1AF2A50JLB70446/a00a47f26a6674435c58434d72d87dc5.jpg',
-      country: 'USA'
+      country: 'USA',
+      userId: id()
     }),
     Car.create({
       name: 'Porsche',
@@ -122,7 +131,8 @@ async function seed() {
       specification: '350hp, RWD, Convertible w/ PDK pkg',
       price: 75000,
       imageUrl: 'https://i.ytimg.com/vi/MW8XkPzvt60/maxresdefault.jpg',
-      country: 'USA'
+      country: 'USA',
+      userId: id()
     })
   ]);
 
