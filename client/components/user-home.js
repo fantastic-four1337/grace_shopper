@@ -7,12 +7,12 @@ import UserPage from './UserPage'
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const {email} = props
+  const {email, userId} = props
 
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <UserPage />
+      <UserPage userId={userId} />
     </div>
   )
 }
@@ -22,7 +22,8 @@ export const UserHome = (props) => {
  */
 const mapState = (state) => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    userId: state.user.id
   }
 }
 

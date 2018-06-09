@@ -27,8 +27,7 @@ class UserPage extends Component {
   }
 
   render() {
-    const { classes, cars } = this.props
-    console.log(cars)
+    const { classes, cars, userId } = this.props
     return (
       <div>
           <div className={classes.rowOfCars}>
@@ -36,7 +35,13 @@ class UserPage extends Component {
               cars.map(car => <SimpleUserCarCard key={car.id} car={car} />)
           }
           </div>
-        <Link to="/addCar"><button type="button">Add Car</button></Link>
+        <Link to={{
+          pathname: "/addCar",
+          state: {
+            userId,
+        }
+        }}><button type="button">Add Car</button>
+        </Link>
       </div>
     );
   }
