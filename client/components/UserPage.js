@@ -27,7 +27,8 @@ class UserPage extends Component {
   }
 
   render() {
-    const { classes, cars, userId } = this.props
+    const { classes, userId } = this.props
+    const cars = this.props.cars.filter(car => car.userId === userId )
     return (
       <div>
           <div className={classes.rowOfCars}>
