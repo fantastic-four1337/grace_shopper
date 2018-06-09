@@ -7,27 +7,29 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const styles = {
   card: {
-    // maxWidth: 345,
     width: 300,
-    height: 350,
+    height: 350
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   link: {
-    color: 'blue',
+    color: 'black'
+  },
+  pads: {
+    paddingTop: '10px'
   }
 };
 
 function SimpleCarCard(props) {
   const { classes, car } = props;
   return (
-    <div>
+    <div className={classes.pads}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -36,11 +38,11 @@ function SimpleCarCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            <Link to={`/cars/${car.id}`} className={classes.link}>{car.name}</Link>
+            <Link to={`/cars/${car.id}`} className={classes.link}>
+              {car.name} {car.model}
+            </Link>
           </Typography>
-          <Typography component="p">
-            {car.description}
-          </Typography>
+          <Typography component="p">{car.description}</Typography>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">
@@ -56,7 +58,7 @@ function SimpleCarCard(props) {
 }
 
 SimpleCarCard.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SimpleCarCard);
