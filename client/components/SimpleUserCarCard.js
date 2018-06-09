@@ -36,7 +36,7 @@ function SimpleUserCarCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            <Link to={`/cars/${car.id}`} className={classes.link}>{car.name}</Link>
+            <Link to={`/home/${car.id}`} className={classes.link}>{car.name}</Link>
           </Typography>
           <Typography component="p">
             {car.description}
@@ -57,7 +57,8 @@ function SimpleUserCarCard(props) {
                 country: car.country
               }
             }}>
-          <Button size="small" color="primary">Edit 
+          <Button size="small" color="primary">
+            Edit
           </Button>
           </Link>
           <Button size="small" color="primary">

@@ -2,6 +2,7 @@ import {
   gotCars,
   gotSingleCar,
   removedCar,
+  removedFromSingleCar,
   editedCar,
   addedCar,
   loadedCar,
