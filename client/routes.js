@@ -11,6 +11,7 @@ import SingleCarBuyer from '../client/components/SingleCarBuyer';
 import EditCar from '../client/components/EditCar';
 import AddCar from '../client/components/AddCar';
 import SingleCarOwner from './components/SingleCarOwner';
+import homeCarousel from './components/homeCarousel';
 
 /**
  * COMPONENT
@@ -30,6 +31,7 @@ class Routes extends Component {
         <Switch>
           {/* Routes placed here are available to all visitors */}
           <Route exact path="/" component={CarResults} />
+          <Route exact path="/home" component={homeCarousel} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/checkout" component={checkOut} />
