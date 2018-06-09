@@ -46,6 +46,8 @@ class SwipeableTemporaryDrawer extends React.Component {
         <Divider />
         <List ><Link to="/checkout">Checkout</Link></List>
         <Divider />
+        <List ><Link to="/profile">Profile</Link></List>
+        <Divider />
         <List onClick={this.props.handleClick} className={classes.logoutButton}>Logout</List>
       </div>
     );
