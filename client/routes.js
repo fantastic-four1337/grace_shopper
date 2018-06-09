@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components';
 import Cart from '../client/components/cart';
 import { me } from './store';
 import checkOut from '../client/components/checkOut';
+import guestCheckOut from '../client/components/guestCheckOut';
 import CarResults from './components/CarResults';
 import SingleCarBuyer from '../client/components/SingleCarBuyer';
 import EditCar from '../client/components/EditCar';
@@ -34,7 +35,7 @@ class Routes extends Component {
           <Route exact path="/home" component={homeCarousel} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/checkout" component={checkOut} />
+          <Route exact path="/guest-checkout" component={guestCheckOut} />
           <Route path="/cart" component={Cart} />
           <Route exact path="/cars" component={CarResults} />
           <Route exact path="/cars/:carId" component={SingleCarBuyer} />
@@ -45,6 +46,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route exact path="/profile" component={UserHome} />
               <Route path="/profile/:carId" component={SingleCarOwner} />
+              <Route exact path="/checkout" component={checkOut} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
