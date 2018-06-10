@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment'
+
 import { getSingleCar, editCar } from '../thunks/cars';
 
 const styles = theme => ({
@@ -93,6 +96,7 @@ class EditCar extends Component {
               value={id ? name : this.state.name}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -104,6 +108,7 @@ class EditCar extends Component {
               value={id ? model : this.state.model}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -115,6 +120,7 @@ class EditCar extends Component {
               value={id ? year : this.state.year}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -137,6 +143,10 @@ class EditCar extends Component {
               value={id ? price : this.state.price}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>
+              }}
             />
           </div>
           <div>
@@ -172,6 +182,7 @@ class EditCar extends Component {
               value={id ? specification : this.state.specification}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
             <div>
               <TextField
@@ -193,6 +204,7 @@ class EditCar extends Component {
           className={classes.button}
           onClick={this.handleSubmit}
           // disabled={name && address && description ? null : true}
+          disabled={!name || !model ||!year || !price || !specification || !imageUrl}
         >
           Update Product
         </Button>

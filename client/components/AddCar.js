@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import { addCar } from '../thunks/cars';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { addCar } from '../thunks/cars';
+import InputAdornment from '@material-ui/core/InputAdornment'
+import { Validation, fieldValidatorCore } from 'react-validation-framework'
+import validator from "validator"
 
 const styles = theme => ({
   container: {
@@ -86,15 +91,25 @@ class AddCar extends Component {
       <div className="container">
         <form className={classes.container} noValidate autoComplete="off">
           <div>
-            <TextField
-              id="name"
-              label="Name"
-              name="name"
-              className={classes.textField}
-              value={name}
-              onChange={this.handleChange}
-              margin="normal"
-            />
+            {/* <Validation
+              group="myGroup1"
+              validators={[
+                {
+                  validator: (val) => !validator.isEmpty(val),
+                  errorMessage: "Cannot be left empty"
+                }
+              ]}> */}
+              <TextField
+                id="name"
+                label="Name"
+                name="name"
+                className={classes.textField}
+                value={name}
+                onChange={this.handleChange}
+                margin="normal"
+                required={true}
+              />
+            {/* </Validation> */}
           </div>
           <div>
             <TextField
@@ -105,6 +120,7 @@ class AddCar extends Component {
               value={model}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -116,6 +132,7 @@ class AddCar extends Component {
               value={year}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -138,6 +155,10 @@ class AddCar extends Component {
               value={price}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>
+              }}
             />
           </div>
           <div>
@@ -173,6 +194,7 @@ class AddCar extends Component {
               value={specification}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
             <div>
               <TextField
@@ -184,6 +206,7 @@ class AddCar extends Component {
                 value={imageUrl}
                 onChange={this.handleChange}
                 margin="normal"
+                required={true}
               />
             </div>
           </div>
@@ -194,6 +217,7 @@ class AddCar extends Component {
           className={classes.button}
           onClick={this.handleSubmit}
           // disabled={name && address && description ? null : true}
+          disabled={!name || !model ||!year || !price || !specification || !imageUrl}
         >
           Add Product
         </Button>

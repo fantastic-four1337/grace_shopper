@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import Cart from '../client/components/cart';
+import Cart from './components/cart';
 import { me } from './store';
-import checkOut from '../client/components/checkOut';
-import guestCheckOut from '../client/components/guestCheckOut';
+import checkOut from './components/checkOut';
+// import guestCheckOut from './components/guestCheckOut';
 import CarResults from './components/CarResults';
-import SingleCarBuyer from '../client/components/SingleCarBuyer';
-import EditCar from '../client/components/EditCar';
-import AddCar from '../client/components/AddCar';
+import SingleCarBuyer from './components/SingleCarBuyer';
+import EditCar from './components/EditCar';
+import AddCar from './components/AddCar';
 import SingleCarOwner from './components/SingleCarOwner';
 import homeCarousel from './components/homeCarousel';
 
@@ -35,7 +35,7 @@ class Routes extends Component {
           <Route exact path="/home" component={homeCarousel} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route exact path="/guest-checkout" component={guestCheckOut} />
+          {/* <Route exact path="/guest-checkout" component={guestCheckOut} /> */}
           <Route path="/cart" component={Cart} />
           <Route exact path="/cars" component={CarResults} />
           <Route exact path="/cars/:carId" component={SingleCarBuyer} />

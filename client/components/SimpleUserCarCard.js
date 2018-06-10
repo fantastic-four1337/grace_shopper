@@ -41,7 +41,7 @@ function SimpleUserCarCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            <Link to={`/home/${car.id}`} className={classes.link}>{car.name}</Link>
+            <Link to={`/profile/${car.id}`} className={classes.link}>{car.name}</Link>
           </Typography>
           <Typography component="p">
             {car.description}
