@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -76,12 +78,26 @@ class SingleCar extends Component {
             <Typography component="p">Country: {country}</Typography>
           </CardContent>
           <CardActions className={classes.root}>
+            {
+            this.props.singleCar.cartId ? <div>
+            <p className={classes.center}>
+              Added to your cart! Proceed to your cart and checkout!
+            </p> 
+            <Link to={'/cart'}>
+              <Button size="small" color="primary"> 
+                Cart
+              </Button>
+            </Link>
+            </div>
+            : <div>
             <Button size="small" color="primary">
               Quick Buy
             </Button>
             <Button size="small" color="primary">
               Add To Cart
             </Button>
+          </div>
+          }
           </CardActions>
         </Card>
       </div>
