@@ -104,6 +104,7 @@ class EditCar extends Component {
               value={id ? model : this.state.model}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -115,6 +116,7 @@ class EditCar extends Component {
               value={id ? year : this.state.year}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -137,6 +139,7 @@ class EditCar extends Component {
               value={id ? price : this.state.price}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -172,6 +175,7 @@ class EditCar extends Component {
               value={id ? specification : this.state.specification}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
             <div>
               <TextField
@@ -193,6 +197,7 @@ class EditCar extends Component {
           className={classes.button}
           onClick={this.handleSubmit}
           // disabled={name && address && description ? null : true}
+          disabled={!name || !model ||!year || !price || !specification || !imageUrl}
         >
           Update Product
         </Button>
