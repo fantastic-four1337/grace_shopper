@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { getSingleCar, editCar } from '../thunks/cars';
+import { addCar } from '../thunks/cars';
 
 const styles = theme => ({
   container: {
@@ -29,20 +29,21 @@ const styles = theme => ({
   }
 });
 
-class EditCar extends Component {
+class AddCar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: '',
       model: '',
-      year: '',
+      year: 0,
       color: '',
       imageUrl: '',
       description: '',
       specification: '',
-      price: '',
-      country: ''
+      price: 0,
+      country: '',
+      userId: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -61,8 +62,7 @@ class EditCar extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    const id = this.props.match.params.carId;
-    this.props.updateCar(id, this.state);
+    this.props.addingCar(this.state);
   }
 
   // eslint-disable-next-line complexity
@@ -78,7 +78,8 @@ class EditCar extends Component {
       description,
       specification,
       price,
-      country
+      country,
+      userId
     } = this.state;
 
     return (
@@ -90,7 +91,7 @@ class EditCar extends Component {
               label="Name"
               name="name"
               className={classes.textField}
-              value={id ? name : this.state.name}
+              value={name}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -101,7 +102,7 @@ class EditCar extends Component {
               label="Model"
               name="model"
               className={classes.textField}
-              value={id ? model : this.state.model}
+              value={model}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -112,7 +113,7 @@ class EditCar extends Component {
               label="Year"
               name="year"
               className={classes.textField}
-              value={id ? year : this.state.year}
+              value={year}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -123,7 +124,7 @@ class EditCar extends Component {
               label="Color"
               name="color"
               className={classes.textField}
-              value={id ? color : this.state.color}
+              value={color}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -134,7 +135,7 @@ class EditCar extends Component {
               label="Price"
               name="price"
               className={classes.textField}
-              value={id ? price : this.state.price}
+              value={price}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -145,7 +146,7 @@ class EditCar extends Component {
               label="Country"
               name="country"
               className={classes.textField}
-              value={id ? country : this.state.country}
+              value={country}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -157,7 +158,7 @@ class EditCar extends Component {
               multiline
               name="description"
               className={classes.textField}
-              value={id ? description : this.state.description}
+              value={description}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -169,7 +170,7 @@ class EditCar extends Component {
               multiline
               name="specification"
               className={classes.textField}
-              value={id ? specification : this.state.specification}
+              value={specification}
               onChange={this.handleChange}
               margin="normal"
             />
@@ -180,7 +181,7 @@ class EditCar extends Component {
                 multiline
                 name="imageUrl"
                 className={classes.textField}
-                value={id ? imageUrl : this.state.imageUrl}
+                value={imageUrl}
                 onChange={this.handleChange}
                 margin="normal"
               />
@@ -194,36 +195,35 @@ class EditCar extends Component {
           onClick={this.handleSubmit}
           // disabled={name && address && description ? null : true}
         >
-          Update Product
+          Add Product
         </Button>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    singleCar: state.car.singleCar
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     car: state.car.singleCar
+//   };
+// };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchSingleCar: id => dispatch(getSingleCar(id)),
-    updateCar: (id, updatedCar) =>
-      dispatch(editCar(id, updatedCar)).then(() => {
-        ownProps.history.push('/home');
+    addingCar: newCar =>
+      dispatch(addCar(newCar)).then(() => {
+        ownProps.history.push('/cars');
       })
   };
 };
 
-EditCar.propTypes = {
+AddCar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
-  )(EditCar)
+  )(AddCar)
 );

@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { removeCar } from '../thunks/cars'
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,7 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom'
+
 
 const styles = {
   card: {
@@ -25,7 +29,8 @@ const styles = {
 };
 
 function SimpleUserCarCard(props) {
-  const { classes, car } = props;
+  const { classes, car, removeCar } = props;
+  
   return (
     <div>
       <Card className={classes.card}>
@@ -36,17 +41,32 @@ function SimpleUserCarCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            <Link to={`/cars/${car.id}`} className={classes.link}>{car.name}</Link>
+            <Link to={`/home/${car.id}`} className={classes.link}>{car.name}</Link>
           </Typography>
           <Typography component="p">
             {car.description}
           </Typography>
         </CardContent>
         <CardActions>
+          <Link to={{
+                pathname: `/editcar/${car.id}`,
+                state: {id: car.id,
+                name: car.name,
+                model: car.model,
+                year: car.year,
+                color: car.color,
+                imageUrl: car.imageUrl,
+                description: car.description,
+                specification: car.specification,
+                price: car.price,
+                country: car.country
+              }
+            }}>
           <Button size="small" color="primary">
             Edit
           </Button>
-          <Button size="small" color="primary">
+          </Link>
+          <Button size="small" color="primary" onClick={() => removeCar(car.id)}>
             Remove
           </Button>
         </CardActions>
@@ -59,4 +79,10 @@ SimpleUserCarCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleUserCarCard);
+const mapDispatchToProps = (dispatch) => ({
+  removeCar: (id) => dispatch(removeCar(id))
+})
+
+export default withStyles(styles)(
+  connect(null, mapDispatchToProps)(SimpleUserCarCard)
+);

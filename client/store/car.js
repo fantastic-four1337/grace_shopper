@@ -32,6 +32,7 @@ export default function(state = initialState, action) {
       };
     }
     case CARS.EDITED_CAR: {
+      console.log(state.cars);
       return {
         ...state,
         cars: [

@@ -6,19 +6,19 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { logout } from '../store';
 
 const styles = {
   list: {
-    width: 250,
+    width: 250
   },
   fullList: {
-    width: 'auto',
+    width: 'auto'
   },
   logoutButton: {
-    color: 'blue',
+    color: 'blue'
   }
 };
 
@@ -27,7 +27,7 @@ class SwipeableTemporaryDrawer extends React.Component {
     open: false
   };
 
-  toggleDrawer = (open) => () => {
+  toggleDrawer = open => () => {
     this.setState({
       open
     });
@@ -35,43 +35,66 @@ class SwipeableTemporaryDrawer extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props)
+
     const loggedInList = (
       <div className={classes.list}>
-        <List ><Link to="/home">Home</Link></List>
+        <List>
+          <Link to="/home">Home</Link>
+        </List>
         <Divider />
-        <List ><Link to="/cars">Cars</Link></List>
+        <List>
+          <Link to="/cars">Cars</Link>
+        </List>
         <Divider />
-        <List ><Link to="/cart">Cart</Link></List>
+        <List>
+          <Link to="/cart">Cart</Link>
+        </List>
         <Divider />
-        <List ><Link to="/checkout">Checkout</Link></List>
+        <List>
+          <Link to="/checkout">Checkout</Link>
+        </List>
         <Divider />
-        <List onClick={this.props.handleClick} className={classes.logoutButton}>Logout</List>
+        <List ><Link to="/profile">Profile</Link></List>
+        <Divider />
+        <List onClick={this.props.handleClick} className={classes.logoutButton}>
+          Logout
+        </List>
       </div>
     );
+
     const loggedOutList = (
       <div className={classes.list}>
-        <List ><Link to="/login">Login</Link></List>
+        <List>
+          <Link to="/login">Login</Link>
+        </List>
         <Divider />
-        <List><Link to="/signup">Sign Up</Link></List>
+        <List>
+          <Link to="/signup">Sign Up</Link>
+        </List>
         <Divider />
-        <List ><Link to="/cars">Cars</Link></List>
+        <List>
+          <Link to="/cars">Cars</Link>
+        </List>
         <Divider />
-        <List ><Link to="/cart">Cart</Link></List>
+        <List>
+          <Link to="/cart">Cart</Link>
+        </List>
         <Divider />
-        <List><Link to="/checkout">Checkout</Link></List>
+        <List>
+          <Link to="/guest-checkout">Guest Checkout</Link>
+        </List>
       </div>
     );
 
     return (
       <div>
         <IconButton
-                  aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.toggleDrawer(true)}
-                  color="inherit"
-                >
-                  <MenuIcon />
+          aria-owns={open ? 'menu-appbar' : null}
+          aria-haspopup="true"
+          onClick={this.toggleDrawer(true)}
+          color="inherit"
+        >
+          <MenuIcon />
         </IconButton>
         <SwipeableDrawer
           open={this.state.open}
@@ -107,10 +130,12 @@ const mapDispatch = dispatch => {
 };
 
 SwipeableTemporaryDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(connect(
-  mapState,
-  mapDispatch
-)(SwipeableTemporaryDrawer));
+export default withStyles(styles)(
+  connect(
+    mapState,
+    mapDispatch
+  )(SwipeableTemporaryDrawer)
+);

@@ -6,9 +6,13 @@ import { Login, Signup, UserHome } from './components';
 import Cart from '../client/components/cart';
 import { me } from './store';
 import checkOut from '../client/components/checkOut';
+import guestCheckOut from '../client/components/guestCheckOut';
 import CarResults from './components/CarResults';
-import SingleCar from '../client/components/SingleCar';
+import SingleCarBuyer from '../client/components/SingleCarBuyer';
 import EditCar from '../client/components/EditCar';
+import AddCar from '../client/components/AddCar';
+import SingleCarOwner from './components/SingleCarOwner';
+import homeCarousel from './components/homeCarousel';
 
 /**
  * COMPONENT
@@ -20,7 +24,6 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-    console.log(this.props);
     if (status === 'unasked') return null;
     if (status === 'loading') {
       return <div>Loading</div>;
@@ -28,20 +31,22 @@ class Routes extends Component {
       return (
         <Switch>
           {/* Routes placed here are available to all visitors */}
+          <Route exact path="/" component={CarResults} />
+          <Route exact path="/home" component={homeCarousel} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          {/* <Route exact path="/cars" component={AllCars} />
-        <Route path="/cars/:carId" component={SingleCar} /> */}
-          <Route path="/checkout" component={checkOut} />
+          <Route exact path="/guest-checkout" component={guestCheckOut} />
           <Route path="/cart" component={Cart} />
           <Route exact path="/cars" component={CarResults} />
-          <Route exact path="/cars/:carId" component={SingleCar} />
+          <Route exact path="/cars/:carId" component={SingleCarBuyer} />
           <Route exact path="/editcar/:carId" component={EditCar} />
-          {/* <Route path="/cars/:carId" component={SingleCar} /> */}
+          <Route exact path="/addcar" component={AddCar} />
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
+              <Route exact path="/profile" component={UserHome} />
+              <Route path="/profile/:carId" component={SingleCarOwner} />
+              <Route exact path="/checkout" component={checkOut} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
