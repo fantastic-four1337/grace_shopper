@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,12 +10,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+
+import { editCar } from '../thunks/cars'
 
 const styles = {
   card: {
     width: 300,
-    height: 350
+    height: 375
   },
   media: {
     height: 0,
@@ -23,42 +27,108 @@ const styles = {
   },
   pads: {
     paddingTop: '10px'
+  },
+  center: {
+    textAlign: 'center',
+    padding: 'none'
   }
 };
 
-function SimpleCarCard(props) {
-  const { classes, car } = props;
-  return (
-    <div className={classes.pads}>
-      <Card className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          image={car.imageUrl}
-          title={car.name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            <Link to={`/cars/${car.id}`} className={classes.link}>
-              {car.name} {car.model}
-            </Link>
-          </Typography>
-          <Typography component="p">{car.description}</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            Quick Buy
-          </Button>
-          <Button size="small" color="primary">
-            Add to Cart
-          </Button>
-        </CardActions>
-      </Card>
-    </div>
-  );
+class SimpleCarCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      model: '',
+      year: '',
+      color: '',
+      imageUrl: '',
+      description: '',
+      specification: '',
+      price: '',
+      country: '',
+      id: 0,
+      cartId: 0,
+    }
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleQuickBuy = this.handleQuickBuy.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({...this.props.car, cartId: this.props.userId})
+  }
+
+  handleAddToCart (event) {
+    event.preventDefault()
+    this.props.addToCart(this.state.id, this.state)
+  }
+
+  handleQuickBuy (event) {
+    event.preventDefault()
+    this.props.quickBuy(this.state.id, this.state)
+  }
+
+  render() {
+    const { classes, car } = this.props;
+    return (
+      <div className={classes.pads}>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.media}
+            image={car.imageUrl}
+            title={car.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              <Link to={`/cars/${car.id}`} className={classes.link}>
+                {car.name} {car.model}
+              </Link>
+            </Typography>
+            <Typography component="p">{car.description}</Typography>
+          </CardContent>
+          <CardActions>
+            {
+            car.cartId 
+            ? <div>
+              <p className={classes.center}>
+                Added to your cart! Proceed to your cart and checkout!
+              </p> 
+              <Link to={'/cart'}>
+                <Button size="small" color="primary"> 
+                  Cart
+                </Button>
+              </Link>
+            </div>
+            : <div>
+            <Button size="small" color="primary" onClick={this.handleQuickBuy}>
+              Quick Buy
+            </Button>
+            <Button size="small" color="primary" onClick={this.handleAddToCart}>
+              Add to Cart
+            </Button>
+            </div>
+            }
+          </CardActions>
+        </Card>
+      </div>
+    );
+  }
 }
 
 SimpleCarCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SimpleCarCard);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  addToCart: (id, updatedCar) => dispatch(editCar(id, updatedCar)),
+  quickBuy: (id, updatedCar) => dispatch(editCar(id, updatedCar)).then(() => {
+    ownProps.history.push('/cart');
+  })
+})
+
+export default withStyles(styles)(
+  connect(
+    null,
+    mapDispatchToProps
+  )(SimpleCarCard)
+);
