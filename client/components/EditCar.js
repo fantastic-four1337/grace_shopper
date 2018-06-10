@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment'
+
 import { getSingleCar, editCar } from '../thunks/cars';
 
 const styles = theme => ({
@@ -93,6 +96,7 @@ class EditCar extends Component {
               value={id ? name : this.state.name}
               onChange={this.handleChange}
               margin="normal"
+              required={true}
             />
           </div>
           <div>
@@ -140,6 +144,9 @@ class EditCar extends Component {
               onChange={this.handleChange}
               margin="normal"
               required={true}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>
+              }}
             />
           </div>
           <div>

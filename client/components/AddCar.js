@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import { addCar } from '../thunks/cars';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { addCar } from '../thunks/cars';
+import InputAdornment from '@material-ui/core/InputAdornment'
 import { Validation, fieldValidatorCore } from 'react-validation-framework'
 import validator from "validator"
 
@@ -153,6 +156,9 @@ class AddCar extends Component {
               onChange={this.handleChange}
               margin="normal"
               required={true}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">$</InputAdornment>
+              }}
             />
           </div>
           <div>
