@@ -57,7 +57,7 @@ class MenuAppBar extends React.Component {
               className={classes.flex}
             >
               {this.props.isLoggedIn ? (
-                <Link to="/cars" className={classes.link}>
+                <Link to="/home" className={classes.link}>
                   Car Gurus
                 </Link>
               ) : (

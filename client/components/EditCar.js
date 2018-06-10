@@ -212,7 +212,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchSingleCar: id => dispatch(getSingleCar(id)),
     updateCar: (id, updatedCar) =>
       dispatch(editCar(id, updatedCar)).then(() => {
-        ownProps.history.push('/home');
+        ownProps.history.push('/profile');
       })
   };
 };
