@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
-
+import { Link } from 'react-router-dom'
 /**
  * COMPONENT
  */
@@ -30,6 +30,11 @@ export const AuthForm = props => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href="/auth/google">{displayName} with Google</a>
+      {displayName === 'Login' ?
+        <div>
+          <p>Don't have an account?</p>
+          <Link to="/signup"><button type="submit" >Signup</button></Link>
+        </div> : null}
     </div>
   );
 };

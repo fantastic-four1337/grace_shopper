@@ -60,6 +60,7 @@ class SimpleCarCard extends Component {
 
   handleAddToCart (event) {
     event.preventDefault()
+    console.log(`USER ID IS HERE: `, this.props.userId)
     this.props.addToCart(this.state.id, this.state)
   }
 
@@ -88,13 +89,13 @@ class SimpleCarCard extends Component {
           </CardContent>
           <CardActions>
             {
-            car.cartId 
+            car.cartId
             ? <div>
               <p className={classes.center}>
                 Added to your cart! Proceed to your cart and checkout!
-              </p> 
+              </p>
               <Link to={'/cart'}>
-                <Button size="small" color="primary"> 
+                <Button size="small" color="primary">
                   Cart
                 </Button>
               </Link>
