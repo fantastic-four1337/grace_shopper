@@ -61,8 +61,20 @@ class SimpleCarCard extends Component {
 
   handleAddToCart (event) {
     event.preventDefault()
-    console.log(`USER ID IS HERE: `, this.props.userId)
-    this.props.addToCart(this.state.id, this.state)
+    if (!this.props.userId){
+      if (!localStorage.carId){
+        let firstCarArr = [this.state.id]
+        let carObj = JSON.stringify(firstCarArr)
+        localStorage.setItem('carId', carObj)
+      } else {
+          let carIdArr = JSON.parse(localStorage.carId)
+          carIdArr.push(this.state.id)
+          let carIdStr = JSON.stringify(carIdArr)
+          localStorage.setItem('carId', carIdStr)
+      }
+    } else {
+        this.props.addToCart(this.state.id, this.state)
+    }
   }
 
   handleQuickBuy (event) {
@@ -114,7 +126,7 @@ class SimpleCarCard extends Component {
             <Button size="small" color="primary" onClick={this.handleQuickBuy}>
               Quick Buy
             </Button>
-            <Button size="small" color="primary" onClick={this.handleAddToCart}>
+            <Button id="addToCart" data-car-array="[]" size="small" color="primary" onClick={this.handleAddToCart}>
               Add to Cart
             </Button>
               </div>
