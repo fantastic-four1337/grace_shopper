@@ -166,7 +166,7 @@ async function seed() {
       total: 0,
       tax: 0,
       userId: 5
-    }),
+    })
   ]);
 
   const transactions = await Promise.all([
@@ -175,9 +175,9 @@ async function seed() {
       shippingAddress: '12 Alphabet Street Apt. 2A New York, NY 10029',
       cardHolder: 'Bozo J Clown',
       cardType: 'Visa',
-      cardNumber: 1234567890,
+      cardNumber: '1234567890',
       expirationDate: '03/11',
-      csv: 311
+      csv: '311'
     })
   ]);
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
