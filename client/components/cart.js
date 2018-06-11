@@ -74,7 +74,8 @@ class Cart extends Component {
 
   render() {
     const { classes, cars, userId } = this.props;
-    const carsInCart = cars.filter(car => car.cartId === userId)
+    let carIdArr = JSON.parse(localStorage.carId)
+    const carsInCart = userId ? cars.filter(car => car.cartId === userId) : cars.filter((car, index) => car.id === carIdArr[index])
     const subTotal = carsInCart.reduce(((acc, curr) => acc + curr.price), 0)
     const tax = Number((subTotal * 0.085).toFixed(2))
     const total = subTotal + tax
@@ -91,8 +92,6 @@ class Cart extends Component {
           <div className={classes.paperChildContainer} >
             <Card className={classes.card}>
               <CardContent>
-                {/* we would map over the div enclosing Table
-                passing in data from the store in place of hard-coded data*/}
                 <div className={classes.tableRoot}>
                   <Table className={classes.table}>
                     <TableHead>
@@ -105,19 +104,13 @@ class Cart extends Component {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {/* <TableRow>
-                        <TableCell>Corvette</TableCell>
-                        <TableCell>2018</TableCell>
-                        <TableCell>$1000</TableCell>
-                        <TableCell>Red</TableCell>
-                      </TableRow> */}
                       {
                         carsInCart.map(car => {
                           return (
                             <TableRow key={car.id}>
                             <TableCell>{car.name}</TableCell>
                             <TableCell>{car.model}</TableCell>
-                            <TableCell>{car.year}</TableCell>                    
+                            <TableCell>{car.year}</TableCell>
                             <TableCell>{car.color}</TableCell>
                             <TableCell>${car.price}</TableCell>
                             </TableRow>
