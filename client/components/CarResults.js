@@ -27,10 +27,11 @@ class CarResults extends Component {
 
   render() {
     const { classes, cars, userId } = this.props;
+    console.log(cars)
     const carsForSale = cars.filter(car => car.userId !== userId)
     return (
       <div className={classes.rowOfCars}>
-        {carsForSale.map(car => <SimpleCarCard key={car.id} car={car} userId={userId} />)}
+        {carsForSale.map(car => <SimpleCarCard key={car.id} car={car} userId={userId} {...this.props}/>)}
       </div>
     );
   }
