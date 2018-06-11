@@ -1,36 +1,35 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Transaction = db.define('transaction', {
   billingAddress: {
     type: Sequelize.TEXT,
     allowNull: false
-},
+  },
   shippingAddress: {
-      type: Sequelize.TEXT,
-      allowNull: false
+    type: Sequelize.TEXT,
+    allowNull: false
   },
   cardHolder: {
     type: Sequelize.STRING,
     allowNull: false
   },
   cardType: {
-      type: Sequelize.STRING,
-      allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false
   },
   cardNumber: {
-      type: Sequelize.INTEGER,
-      allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false
   },
   expirationDate: {
-      type: Sequelize.STRING,
-      allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false
   },
   csv: {
-    type: Sequelize.INTEGER,
-      allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false
   }
-})
+});
 
-
-module.exports = Transaction
+module.exports = Transaction;

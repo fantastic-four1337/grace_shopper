@@ -1,7 +1,7 @@
-const User = require('./user')
-const Cart = require('./cart')
-const Car = require('./car')
-const Transaction = require('./transaction')
+const User = require('./user');
+const Cart = require('./cart');
+const Car = require('./car');
+const Transaction = require('./transaction');
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -9,10 +9,12 @@ const Transaction = require('./transaction')
  *    BlogPost.belongsTo(User)
  */
 
-Car.belongsTo(User) // starts as sell, after transaction is buyer
-Car.belongsTo(Cart) // only after added to Cart
-Cart.belongsTo(User) // this will be the user who will become the owner after transaction
-Transaction.belongsTo(Cart)
+Car.belongsTo(User); // starts as sell, after transaction is buyer
+Car.belongsTo(Cart); // only after added to Cart
+Cart.belongsTo(User); // this will be the user who will become the owner after transaction
+Transaction.belongsTo(Cart);
+Transaction.belongsTo(User);
+User.hasMany(Transaction);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -25,4 +27,4 @@ module.exports = {
   Cart,
   Car,
   Transaction
-}
+};
