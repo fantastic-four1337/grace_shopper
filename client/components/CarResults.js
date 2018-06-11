@@ -27,9 +27,10 @@ class CarResults extends Component {
 
   render() {
     const { classes, cars, userId } = this.props;
+    const carsForSale = cars.filter(car => car.userId !== userId)
     return (
       <div className={classes.rowOfCars}>
-        {cars.map(car => <SimpleCarCard key={car.id} car={car} userId={userId}/>)}
+        {carsForSale.map(car => <SimpleCarCard key={car.id} car={car} userId={userId} />)}
       </div>
     );
   }

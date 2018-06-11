@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -62,9 +65,19 @@ const styles = theme => ({
 class Cart extends Component {
   constructor(props) {
     super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+  handleSubmit (event) {
+    event.preventDefault()
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, cars, userId } = this.props;
+    const carsInCart = cars.filter(car => car.cartId === userId)
+    const subTotal = carsInCart.reduce((car1, car2) => car1.price + car2.price)
+    const tax = Number((subTotal * 0.085).toFixed(2))
+    const total = subTotal + tax
     const bull = <span className={classes.bullet}>•</span>;
     return (
       <div>
@@ -85,18 +98,32 @@ class Cart extends Component {
                     <TableHead>
                       <TableRow>
                         <TableCell>Name</TableCell>
+                        <TableCell>Model</TableCell>
                         <TableCell>Year</TableCell>
-                        <TableCell>Price</TableCell>
                         <TableCell>Color</TableCell>
+                        <TableCell>Price</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      <TableRow>
+                      {/* <TableRow>
                         <TableCell>Corvette</TableCell>
                         <TableCell>2018</TableCell>
                         <TableCell>$1000</TableCell>
                         <TableCell>Red</TableCell>
-                      </TableRow>
+                      </TableRow> */}
+                      {
+                        carsInCart.map(car => {
+                          return (
+                            <TableRow key={car.id}>
+                            <TableCell>{car.name}</TableCell>
+                            <TableCell>{car.model}</TableCell>
+                            <TableCell>{car.year}</TableCell>                    
+                            <TableCell>{car.color}</TableCell>
+                            <TableCell>${car.price}</TableCell>
+                            </TableRow>
+                          )
+                        })
+                      }
                     </TableBody>
                   </Table>
                 </div>
@@ -110,16 +137,22 @@ class Cart extends Component {
               <List component="nav">
                 <ListItem button>
                   <ListItemText primary="Subtotal" />
+                  {`$${subTotal}`}
                 </ListItem>
                 <Divider />
                 <ListItem button divider>
                   <ListItemText primary="Tax" />
+                  {`$${tax}`}
                 </ListItem>
                 <ListItem button>
                   <ListItemText primary="Total" />
+                  {`$${total}`}
                 </ListItem>
               </List>
             </div>
+            <Link to="/checkout">
+              <button type="button">Checkout</button>
+            </Link>
         </Paper>
       </div>
     );
@@ -130,4 +163,9 @@ Cart.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Cart);
+const mapStateToProps = (state) => ({
+  cars: state.car.cars,
+  userId: state.user.id
+})
+
+export default withStyles(styles)(connect(mapStateToProps)(Cart));

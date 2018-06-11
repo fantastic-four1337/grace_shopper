@@ -52,6 +52,7 @@ class SimpleCarCard extends Component {
     }
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleQuickBuy = this.handleQuickBuy.bind(this)
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
   }
 
   componentDidMount() {
@@ -67,6 +68,11 @@ class SimpleCarCard extends Component {
   handleQuickBuy (event) {
     event.preventDefault()
     this.props.quickBuy(this.state.id, this.state)
+  }
+
+  handleRemoveFromCart (event) {
+    event.preventDefault()
+    this.props.addToCart(this.state.id, {...this.state, cartId: null})
   }
 
   render() {
@@ -94,12 +100,15 @@ class SimpleCarCard extends Component {
               <p className={classes.center}>
                 Added to your cart! Proceed to your cart and checkout!
               </p>
-              <Link to={'/cart'}>
+              <Link to="/cart">
                 <Button size="small" color="primary">
                   Cart
                 </Button>
               </Link>
-            </div>
+              <Button size="small" color="primary" onClick={this.handleRemoveFromCart}>
+                Remove from Cart
+              </Button>
+              </div>
             : <div>
             <Button size="small" color="primary" onClick={this.handleQuickBuy}>
               Quick Buy
@@ -107,7 +116,7 @@ class SimpleCarCard extends Component {
             <Button size="small" color="primary" onClick={this.handleAddToCart}>
               Add to Cart
             </Button>
-            </div>
+              </div>
             }
           </CardActions>
         </Card>
