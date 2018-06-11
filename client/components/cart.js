@@ -75,7 +75,7 @@ class Cart extends Component {
   render() {
     const { classes, cars, userId } = this.props;
     const carsInCart = cars.filter(car => car.cartId === userId)
-    const subTotal = carsInCart.reduce((car1, car2) => car1.price + car2.price)
+    const subTotal = carsInCart.reduce(((acc, curr) => acc + curr.price), 0)
     const tax = Number((subTotal * 0.085).toFixed(2))
     const total = subTotal + tax
     const bull = <span className={classes.bullet}>•</span>;
@@ -150,7 +150,15 @@ class Cart extends Component {
                 </ListItem>
               </List>
             </div>
-            <Link to="/checkout">
+            <Link to={{
+              pathname: '/checkout',
+              state: {
+                cars: carsInCart,
+                tax,
+                total,
+                userId
+              }
+            }}>
               <button type="button">Checkout</button>
             </Link>
         </Paper>

@@ -6,7 +6,7 @@ import { Login, Signup, UserHome } from './components';
 import Cart from './components/cart';
 import { me } from './store';
 import checkOut from './components/checkOut';
-import guestCheckout from './components/guestCheckOut';
+import GuestCheckout from './components/GuestCheckout';
 import CarResults from './components/CarResults';
 import SingleCarBuyer from './components/SingleCarBuyer';
 import EditCar from './components/EditCar';
@@ -41,7 +41,7 @@ class Routes extends Component {
           <Route exact path="/cars/:carId" component={SingleCarBuyer} />
           <Route exact path="/editcar/:carId" component={EditCar} />
           <Route exact path="/addcar" component={AddCar} />
-          <Route exact path="/guest-checkout" component={guestCheckout} />
+          <Route exact path="/guestCheckout" component={GuestCheckout} />
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}

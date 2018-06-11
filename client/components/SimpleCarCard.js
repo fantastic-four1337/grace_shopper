@@ -76,7 +76,8 @@ class SimpleCarCard extends Component {
   }
 
   render() {
-    const { classes, car } = this.props;
+    const { classes, car, userId } = this.props;
+    console.log(this.props)
     return (
       <div className={classes.pads}>
         <Card className={classes.card}>
@@ -95,7 +96,7 @@ class SimpleCarCard extends Component {
           </CardContent>
           <CardActions>
             {
-            car.cartId
+            car.cartId === userId
             ? <div>
               <p className={classes.center}>
                 Added to your cart! Proceed to your cart and checkout!
