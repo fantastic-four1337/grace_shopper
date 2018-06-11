@@ -3,6 +3,7 @@ module.exports = router;
 
 router.use('/users', require('./users'));
 router.use('/carts', require('./carts'));
+router.use('/guestCarts', require('./guestCarts'));
 router.use('/cars', require('./cars'));
 router.use('/transactions', require('./transaction'));
 
