@@ -26,7 +26,12 @@ class CarResults extends Component {
 
   render() {
     const { classes, cars, userId } = this.props;
-    const carsForSale = cars.filter(car => car.userId !== userId);
+    const carsForSale = cars
+      .filter(car => car.userId !== userId)
+      .sort(
+        (car1, car2) =>
+          `${car1.name} ${car1.model}` > `${car2.name} ${car2.model}`
+      );
     return (
       <div className={classes.rowOfCars}>
         {carsForSale.map(car => (
