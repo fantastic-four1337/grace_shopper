@@ -87,7 +87,7 @@ describe('carReducer', () => {
       expect(newState.status).to.deep.equal('loaded')
     })
 
-    it.only('loads cars on state when REQUESTED_CAR action is dispatched', () => {
+    it('loads cars on state when REQUESTED_CAR action is dispatched', () => {
       const cars = [{
         
         name: 'Corvette',
