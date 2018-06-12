@@ -77,9 +77,11 @@ class GuestCheckout extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { cars } = this.props.history.location.state
-    console.log(typeof this.state.cardNumber);
+    const { classes, cars, userId } = this.props;
+    console.log(this.props);
+    const carsInCart = cars.filter(car => {
+      return car.cartId === userId;
+    });
 
     return (
       <div>
@@ -98,7 +100,7 @@ class GuestCheckout extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cars.map(car => {
+              {carsInCart.map(car => {
                 return (
                   <TableRow key={car.id}>
                     <TableCell component="th" scope="row">
@@ -180,7 +182,7 @@ class GuestCheckout extends Component {
 
 const mapStateToProps = state => {
   return {
-    // cars: state.car.cars,
+    cars: state.car.cars,
     userId: state.user.id
   };
 };

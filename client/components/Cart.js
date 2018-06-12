@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,27 +24,27 @@ const styles = theme => ({
   listRoot: {
     width: '100%',
     maxWidth: '360px',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper
   },
   paperRoot: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 3
   }),
   card: {
-    minWidth: 275,
+    minWidth: 275
   },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
-    transform: 'scale(0.8)',
+    transform: 'scale(0.8)'
   },
   title: {
     marginBottom: 16,
-    fontSize: 14,
+    fontSize: 14
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 12
   },
   paperChildContainer: {
     display: 'flex',
@@ -55,30 +55,30 @@ const styles = theme => ({
   tableRoot: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
   table: {
-    minWidth: 700,
+    minWidth: 700
   }
 });
 
 class Cart extends Component {
   constructor(props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.guestCheck = this.guestCheck.bind(this)
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.guestCheck = this.guestCheck.bind(this);
   }
 
-  handleSubmit (event) {
-    event.preventDefault()
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
-  guestCheck () {
+  guestCheck() {
     // this is a helper function for our render.
     // for logged-in users it returns an array of cars from the store;
     // for guests it returns an array taken from the browser's localStorage prop.
     if (this.props.userId) {
-      return this.props.cars.filter(car => car.cartId === this.props.userId)
+      return this.props.cars.filter(car => car.cartId === this.props.userId);
     } else {
       let carIdArr = !localStorage.carId ? [0] : JSON.parse(localStorage.carId)
       return this.props.cars.filter((car) => carIdArr.includes(car.id))
@@ -87,10 +87,10 @@ class Cart extends Component {
 
   render() {
     const { classes, userId } = this.props;
-    const carsInCart = this.guestCheck()
-    const subTotal = carsInCart.reduce(((acc, curr) => acc + curr.price), 0)
-    const tax = Number((subTotal * 0.085).toFixed(2))
-    const total = subTotal + tax
+    const carsInCart = this.guestCheck();
+    const subTotal = carsInCart.reduce((acc, curr) => acc + curr.price, 0);
+    const tax = Number((subTotal * 0.085).toFixed(2));
+    const total = subTotal + tax;
     return (
       <div>
         <Paper className={classes.paperRoot} elevation={4}>
@@ -100,7 +100,7 @@ class Cart extends Component {
           <Typography component="p">
             Review your cart. When you're ready, head to checkout.
           </Typography>
-          <div className={classes.paperChildContainer} >
+          <div className={classes.paperChildContainer}>
             <Card className={classes.card}>
               <CardContent>
                 <div className={classes.tableRoot}>
@@ -115,19 +115,17 @@ class Cart extends Component {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {
-                        carsInCart.map(car => {
-                          return (
-                            <TableRow key={car.id}>
+                      {carsInCart.map(car => {
+                        return (
+                          <TableRow key={car.id}>
                             <TableCell>{car.name}</TableCell>
                             <TableCell>{car.model}</TableCell>
                             <TableCell>{car.year}</TableCell>
                             <TableCell>{car.color}</TableCell>
                             <TableCell>${car.price}</TableCell>
-                            </TableRow>
-                          )
-                        })
-                      }
+                          </TableRow>
+                        );
+                      })}
                     </TableBody>
                   </Table>
                 </div>
@@ -137,24 +135,25 @@ class Cart extends Component {
               </CardActions>
             </Card>
           </div>
-            <div className={classes.listRoot}>
-              <List component="nav">
-                <ListItem button>
-                  <ListItemText primary="Subtotal" />
-                  {`$${subTotal}`}
-                </ListItem>
-                <Divider />
-                <ListItem button divider>
-                  <ListItemText primary="Tax" />
-                  {`$${tax}`}
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Total" />
-                  {`$${total}`}
-                </ListItem>
-              </List>
-            </div>
-            <Link to={{
+          <div className={classes.listRoot}>
+            <List component="nav">
+              <ListItem button>
+                <ListItemText primary="Subtotal" />
+                {`$${subTotal}`}
+              </ListItem>
+              <Divider />
+              <ListItem button divider>
+                <ListItemText primary="Tax" />
+                {`$${tax}`}
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Total" />
+                {`$${total}`}
+              </ListItem>
+            </List>
+          </div>
+          <Link
+            to={{
               pathname: userId ? '/checkout' : '/guest-checkout',
               state: {
                 cars: carsInCart,
@@ -162,9 +161,10 @@ class Cart extends Component {
                 total,
                 userId
               }
-            }}>
-              <button type="button">Checkout</button>
-            </Link>
+            }}
+          >
+            <button type="button">Checkout</button>
+          </Link>
         </Paper>
       </div>
     );
@@ -172,12 +172,12 @@ class Cart extends Component {
 }
 
 Cart.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   cars: state.car.cars,
   userId: state.user.id
-})
+});
 
 export default withStyles(styles)(connect(mapStateToProps)(Cart));
