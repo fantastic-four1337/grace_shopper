@@ -76,9 +76,12 @@ class GuestCheckout extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-    console.log(typeof this.state.cardNumber);
-
+    const { classes, cars } = this.props;
+    if (!localStorage.carId) {
+      return (<div><p>No cars in your cart yet. Keep browsing.</p></div>)
+    }
+    let carIdArr = JSON.parse(localStorage.carId)
+    const carsInCart = cars.filter((car) => carIdArr.includes(car.id))
     return (
       <div>
         <Typography variant="headline" component="h3">
@@ -96,7 +99,7 @@ class GuestCheckout extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.cars.map(car => {
+              {carsInCart.map(car => {
                 return (
                   <TableRow key={car.id}>
                     <TableCell component="th" scope="row">
