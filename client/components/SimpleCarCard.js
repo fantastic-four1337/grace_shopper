@@ -151,9 +151,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   })
 })
 
+const mapStateToProps = state => ({
+  userId: state.user.id
+})
+
+
 export default withStyles(styles)(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(SimpleCarCard)
 );

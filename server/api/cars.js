@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:carId', async (req, res, next) => {
   try {
     const targetCar = await Car.findById(req.params.carId);
-      const updatedCar = await targetCar.update(req.body);
+      const updatedCar = await targetCar.setCart(req.body.cartId);
       res.json(updatedCar);
   } catch (err) {
     res.status(500).send('Missing necessary information.');

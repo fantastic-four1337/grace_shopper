@@ -6,3 +6,4 @@ secrets.js
 npm-debug.log
 yarn-error.log
 client/StripeConstants/Keys.js
+stripe/stripeConstant.js

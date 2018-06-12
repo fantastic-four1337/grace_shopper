@@ -1,7 +1,7 @@
 const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const {User} = require('../db/models')
+const { User, Cart } = require('../db/models')
 module.exports = router
 
 /**
@@ -35,11 +35,23 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     const name = profile.displayName
     const email = profile.emails[0].value
 
+    // the following creates an Oauth user if none exists;
+    // if creating, it also creates a cart associated with that Oauth user.
     User.find({where: {googleId}})
       .then(foundUser => (foundUser
         ? done(null, foundUser)
         : User.create({name, email, googleId})
-          .then(createdUser => done(null, createdUser))
+          .then(createdUser => {
+            return Cart.create({
+              subTotal: 0,
+              total: 0,
+              tax: 0,
+              userId: createdUser.id
+            }).then(async createdCart => {
+              const userToSend = await User.findById(createdCart.userId)
+              done(null, userToSend)
+            })
+          })
       ))
       .catch(done)
   })
