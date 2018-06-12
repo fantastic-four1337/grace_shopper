@@ -42,7 +42,7 @@ const styles = theme => ({
 class GuestCheckout extends Component {
   constructor(props) {
     super(props);
-
+    this.price = 0;
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -101,7 +101,15 @@ class GuestCheckout extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <Stripe name="Your Order" description="Total 8 orders" amount={1} />
+        <Stripe
+          name={
+            carsInCart.length > 1
+              ? `${carsInCart[0].name} and ${carsInCart.length - 1} cars`
+              : `${carsInCart[0].name}`
+          }
+          description={`Total ${carsInCart.length} orders`}
+          amount={carsInCart.forEach(car => this.price + car.price)}
+        />
       </div>
     );
   }
