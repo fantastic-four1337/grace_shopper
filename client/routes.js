@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import Cart from './components/cart';
+import Cart from './components/Cart';
 import { me } from './store';
-import checkOut from './components/checkOut';
+import CheckOut from './components/CheckOut';
 import GuestCheckout from './components/GuestCheckout';
 import CarResults from './components/CarResults';
 import SingleCarBuyer from './components/SingleCarBuyer';
 import EditCar from './components/EditCar';
 import AddCar from './components/AddCar';
 import SingleCarOwner from './components/SingleCarOwner';
-import homeCarousel from './components/homeCarousel';
+import HomeCarousel from './components/HomeCarousel';
 
 /**
  * COMPONENT
@@ -32,7 +32,7 @@ class Routes extends Component {
         <Switch>
           {/* Routes placed here are available to all visitors */}
           <Route exact path="/" component={Login} />
-          <Route exact path="/home" component={homeCarousel} />
+          <Route exact path="/home" component={HomeCarousel} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           {/* <Route exact path="/guest-checkout" component={guestCheckOut} /> */}
@@ -47,7 +47,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route exact path="/profile" component={UserHome} />
               <Route path="/profile/:carId" component={SingleCarOwner} />
-              <Route exact path="/checkout" component={checkOut} />
+              <Route exact path="/checkout" component={CheckOut} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
