@@ -81,12 +81,35 @@ class SimpleCarCard extends Component {
 
   handleQuickBuy (event) {
     event.preventDefault()
-    this.props.quickBuy(this.state.id, this.state)
+    if (!this.props.userId){
+      if (!localStorage.carId){
+        let firstCarArr = [this.state.id]
+        let carObj = JSON.stringify(firstCarArr)
+        localStorage.setItem('carId', carObj)
+        this.props.quickBuy(this.state.id, this.state)
+      } else {
+          let carIdArr = JSON.parse(localStorage.carId)
+          carIdArr.push(this.state.id)
+          let carIdStr = JSON.stringify(carIdArr)
+          localStorage.setItem('carId', carIdStr)
+          this.props.quickBuy(this.state.id, this.state)
+      }
+    } else {
+        this.props.quickBuy(this.state.id, this.state)
+    }
   }
 
   handleRemoveFromCart (event) {
     event.preventDefault()
-    this.props.addToCart(this.state.id, {...this.state, cartId: null})
+    if (!this.props.userId){
+      let carObj = JSON.parse(localStorage.carId)
+      let filteredCarObj = carObj.filter(carId => carId !== this.state.id)
+      let stringifiedObj = JSON.stringify(filteredCarObj)
+      localStorage.setItem('carId', stringifiedObj)
+      this.props.addToCart(this.state.id, {...this.state, cartId: null})
+    } else {
+      this.props.addToCart(this.state.id, {...this.state, cartId: null})
+    }
   }
 
   render() {
