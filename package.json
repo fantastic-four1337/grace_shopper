@@ -24,9 +24,10 @@
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
     "axios": "^0.15.3",
-    "body-parser": "^1.16.1",
+    "body-parser": "^1.18.3",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
+    "cors": "^2.8.4",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
@@ -41,12 +42,14 @@
     "react-redux": "^5.0.2",
     "react-responsive-carousel": "^3.1.39",
     "react-router-dom": "^4.1.1",
+    "react-stripe-checkout": "^2.6.3",
     "react-validation-framework": "^5.0.0",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.3.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "stripe": "^6.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.40",
