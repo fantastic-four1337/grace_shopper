@@ -81,7 +81,7 @@ class GuestCheckout extends Component {
     if (!localStorage.carId) {
       return (<div><p>No cars in your cart yet. Keep browsing.</p></div>)
     }
-    let carIdArr = JSON.parse(localStorage.carId)
+    let carIdArr = !localStorage.carId ? [0] : JSON.parse(localStorage.carId)
     const carsInCart = cars.filter((car) => carIdArr.includes(car.id))
     return (
       <div>
