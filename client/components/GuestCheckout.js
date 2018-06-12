@@ -102,11 +102,7 @@ class GuestCheckout extends Component {
           </Table>
         </Paper>
         <Stripe
-          name={
-            carsInCart.length > 1
-              ? `${carsInCart[0].name} and ${carsInCart.length - 1} cars`
-              : `${carsInCart[0].name}`
-          }
+          name="orders"
           description={`Total ${carsInCart.length} orders`}
           amount={carsInCart.forEach(car => this.price + car.price)}
         />

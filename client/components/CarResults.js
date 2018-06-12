@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import SimpleCarCard from './SimpleCarCard';
 import { getCars } from '../thunks/cars.js';
-import UserPage from './UserPage';
 
 const styles = {
   card: {
@@ -27,10 +26,17 @@ class CarResults extends Component {
 
   render() {
     const { classes, cars, userId } = this.props;
-    const carsForSale = cars.filter(car => car.userId !== userId)
+    const carsForSale = cars.filter(car => car.userId !== userId);
     return (
       <div className={classes.rowOfCars}>
-        {carsForSale.map(car => <SimpleCarCard key={car.id} car={car} userId={userId} {...this.props} />)}
+        {carsForSale.map(car => (
+          <SimpleCarCard
+            key={car.id}
+            car={car}
+            userId={userId}
+            {...this.props}
+          />
+        ))}
       </div>
     );
   }
