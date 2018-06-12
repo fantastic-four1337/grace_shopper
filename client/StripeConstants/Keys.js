@@ -3,7 +3,7 @@
 export const PAYMENT_SERVER_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://car-gurus.herokuapp.com/'
-    : 'https://localhost:3000';
+    : 'http://localhost:3000';
 
 export const STRIPE_PUBLISHABLE =
   process.env.NODE_ENV === 'production'

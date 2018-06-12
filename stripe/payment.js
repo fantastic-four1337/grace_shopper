@@ -1,6 +1,6 @@
 const stripe = require('./stripeConstant');
 
-const postCharge = res => (stripeErr, stripeRes) => {
+const postStripeCharge = res => (stripeErr, stripeRes) => {
   if (stripeErr) {
     res.status(500).send({ error: stripeErr });
   } else {
@@ -8,19 +8,19 @@ const postCharge = res => (stripeErr, stripeRes) => {
   }
 };
 
-const paymentProcessor = app => {
+const paymentApi = app => {
   app.get('/', (req, res) => {
     res.send({
-      message: 'Here is payment',
+      message: 'Hello Stripe checkout server!',
       timestamp: new Date().toISOString()
     });
   });
 
   app.post('/', (req, res) => {
-    stripe.charge.create(req.body, postCharge(res));
+    stripe.charges.create(req.body, postStripeCharge(res));
   });
 
   return app;
 };
 
-module.exports = paymentProcessor;
+module.exports = paymentApi;
