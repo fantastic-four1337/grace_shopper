@@ -9,11 +9,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Stripe from './Stripe';
 
 import { getCars } from '../thunks/cars';
-import { addTransaction } from '../thunks/transactions';
 
 const styles = theme => ({
   root: {
@@ -56,7 +54,6 @@ class GuestCheckout extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleOrder = this.handleOrder.bind(this);
   }
 
   // Getting cars from backend for dummy purpose
@@ -70,15 +67,8 @@ class GuestCheckout extends Component {
     });
   }
 
-  handleOrder(evt) {
-    evt.preventDefault();
-    const info = this.state;
-    this.props.addOrder({ ...info, userId: this.props.userId });
-  }
-
   render() {
     const { classes, cars, userId } = this.props;
-    console.log(this.props);
     const carsInCart = cars.filter(car => {
       return car.cartId === userId;
     });
@@ -116,65 +106,7 @@ class GuestCheckout extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <Paper className={classes.container}>
-          <TextField
-            name="cardNumber"
-            label="Card Number"
-            className={classes.textField}
-            value={this.state.cardNumber}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <TextField
-            label="Card Type"
-            name="cardType"
-            className={classes.textField}
-            value={this.state.cardType}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <TextField
-            label="Exp. Date"
-            name="expirationDate"
-            className={classes.textField}
-            value={this.state.expirationDate}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <TextField
-            name="csv"
-            label="CSV"
-            className={classes.textField}
-            value={this.state.csv}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <TextField
-            name="cardHolder"
-            label="Cardholder Name"
-            className={classes.textField}
-            value={this.state.cardHolder}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <TextField
-            name="shippingAddress"
-            label="Shipping Address"
-            className={classes.textField}
-            value={this.state.shippingAddress}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <TextField
-            name="billingAddress"
-            label="Billing Address"
-            className={classes.textField}
-            value={this.state.billingAddress}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-        </Paper>
-        <Button onClick={this.handleOrder}>Process Payment</Button>
+        <Stripe name="Your Order" description="Total 8 orders" amount={1} />
       </div>
     );
   }
@@ -188,8 +120,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllCars: () => dispatch(getCars()),
-    addOrder: orderInfo => dispatch(addTransaction(orderInfo))
+    fetchAllCars: () => dispatch(getCars())
   };
 };
 

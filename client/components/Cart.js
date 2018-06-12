@@ -11,7 +11,6 @@ import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
@@ -19,6 +18,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+
+import { editCar } from '../thunks/cars';
 
 const styles = theme => ({
   listRoot: {
@@ -67,10 +68,26 @@ class Cart extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.guestCheck = this.guestCheck.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
+  }
+
+  handleRemove(id, car) {
+    event.preventDefault();
+    if (this.props.userId) {
+      this.props.removeCar(id, {
+        ...car,
+        cartId: null
+      });
+    } else {
+      let carArr = JSON.parse(localStorage.carId);
+      carArr = carArr.filter(carId => carId !== id);
+      localStorage.carId = JSON.stringify(carArr);
+      this.props.removeCar(id, car);
+    }
   }
 
   guestCheck() {
@@ -80,8 +97,8 @@ class Cart extends Component {
     if (this.props.userId) {
       return this.props.cars.filter(car => car.cartId === this.props.userId);
     } else {
-      let carIdArr = !localStorage.carId ? [0] : JSON.parse(localStorage.carId)
-      return this.props.cars.filter((car) => carIdArr.includes(car.id))
+      let carIdArr = !localStorage.carId ? [0] : JSON.parse(localStorage.carId);
+      return this.props.cars.filter(car => carIdArr.includes(car.id));
     }
   }
 
@@ -123,6 +140,13 @@ class Cart extends Component {
                             <TableCell>{car.year}</TableCell>
                             <TableCell>{car.color}</TableCell>
                             <TableCell>${car.price}</TableCell>
+                            <TableCell>
+                              <Button
+                                onClick={() => this.handleRemove(car.id, car)}
+                              >
+                                Remove
+                              </Button>
+                            </TableCell>
                           </TableRow>
                         );
                       })}
@@ -130,9 +154,6 @@ class Cart extends Component {
                   </Table>
                 </div>
               </CardContent>
-              <CardActions>
-                <Button size="small">Remove From Cart</Button>
-              </CardActions>
             </Card>
           </div>
           <div className={classes.listRoot}>
@@ -180,4 +201,12 @@ const mapStateToProps = state => ({
   userId: state.user.id
 });
 
-export default withStyles(styles)(connect(mapStateToProps)(Cart));
+const mapDispatchToProps = dispatch => ({
+  removeCar: (id, data) => dispatch(editCar(id, data))
+});
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Cart)
+);
