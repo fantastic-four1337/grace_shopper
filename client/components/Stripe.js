@@ -16,7 +16,7 @@ const errorPayment = data =>
     'Payment Declined. Please use different source. If problem persists, please contact bank or your financial institution.'
   );
 
-const onToken = (amount, description) => token =>
+const onToken = (amount, description, idArr) => token =>
   axios
     .post(PAYMENT_SERVER_URL, {
       description,
@@ -24,15 +24,18 @@ const onToken = (amount, description) => token =>
       currency: 'USD',
       amount: dollar(amount)
     })
+    .then(() => {
+      idArr.map(async id => await axios.delete(`/api/cars/${id}`));
+    })
     .then(successPayment)
     .catch(errorPayment);
 
-const Stripe = ({ name, description, amount }) => (
+const Stripe = ({ name, description, amount, idArr }) => (
   <StripeCheckout
     name={name}
     description={description}
     amount={dollar(amount)}
-    token={onToken(amount, description)}
+    token={onToken(amount, description, idArr)}
     currency="USD"
     stripeKey={STRIPE_PUBLISHABLE}
   />
