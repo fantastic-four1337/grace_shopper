@@ -73,6 +73,12 @@ class GuestCheckout extends Component {
       return car.cartId === userId;
     });
 
+    const subTotal = carsInCart.reduce((acc, curr) => acc + curr.price, 0);
+    const tax = Number((subTotal * 0.085).toFixed(2));
+    const total = subTotal + tax;
+
+    const idArr = carsInCart.map(car => car.id);
+
     return (
       <div>
         <Typography variant="headline" component="h3">
@@ -106,7 +112,12 @@ class GuestCheckout extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <Stripe name="Your Order" description="Total 8 orders" amount={1} />
+        <Stripe
+          name="Your Order"
+          description="Total 8 orders"
+          amount={total}
+          idArr={idArr}
+        />
       </div>
     );
   }

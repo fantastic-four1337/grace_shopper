@@ -105,6 +105,7 @@ class GuestCheckout extends Component {
           name="orders"
           description={`Total ${carsInCart.length} orders`}
           amount={carsInCart.forEach(car => this.price + car.price)}
+          removeCar={this.handleRemove}
         />
       </div>
     );
