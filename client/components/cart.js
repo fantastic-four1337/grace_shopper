@@ -66,20 +66,32 @@ class Cart extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.guestCheck = this.guestCheck.bind(this)
   }
 
   handleSubmit (event) {
     event.preventDefault()
   }
 
+  guestCheck () {
+    // this is a helper function for our render.
+    // for logged-in users it returns an array of cars from the store;
+    // for guests it returns an array taken from the browser's localStorage prop.
+    if (this.props.userId) {
+      return this.props.cars.filter(car => car.cartId === this.props.userId)
+    } else {
+      let parseObj = localStorage.getItem('carId')
+      let carIdArr = JSON.parse(parseObj)
+      return this.props.cars.filter((car) => carIdArr.includes(car.id))
+    }
+  }
+
   render() {
-    const { classes, cars, userId } = this.props;
-    let carIdArr = JSON.parse(localStorage.carId)
-    const carsInCart = userId ? cars.filter(car => car.cartId === userId) : cars.filter((car, index) => car.id === carIdArr[index])
+    const { classes, userId } = this.props;
+    const carsInCart = this.guestCheck()
     const subTotal = carsInCart.reduce(((acc, curr) => acc + curr.price), 0)
     const tax = Number((subTotal * 0.085).toFixed(2))
     const total = subTotal + tax
-    const bull = <span className={classes.bullet}>•</span>;
     return (
       <div>
         <Paper className={classes.paperRoot} elevation={4}>
@@ -144,7 +156,7 @@ class Cart extends Component {
               </List>
             </div>
             <Link to={{
-              pathname: '/checkout',
+              pathname: userId ? '/checkout' : '/guest-checkout',
               state: {
                 cars: carsInCart,
                 tax,
