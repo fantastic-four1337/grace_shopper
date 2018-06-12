@@ -1,5 +1,5 @@
 import React from 'react'
-import MenuAppBar from './components/menuBar'
+import MenuAppBar from './components/MenuBar'
 import Routes from './routes'
 
 const App = () => {

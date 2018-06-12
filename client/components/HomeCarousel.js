@@ -19,7 +19,7 @@ const styles = theme => ({
   }
 });
 
-class homeCarousel extends Component {
+class HomeCarousel extends Component {
   componentDidMount() {
     this.props.getCars();
   }
@@ -61,11 +61,11 @@ const mapDispatchToProps = dispatch => ({
   getCars: () => dispatch(getCars())
 });
 
-homeCarousel.propTypes = {
+HomeCarousel.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
-)(homeCarousel));
+)(HomeCarousel));
