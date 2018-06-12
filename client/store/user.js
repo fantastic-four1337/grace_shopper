@@ -43,12 +43,12 @@ export const auth = (email, password, method) => dispatch =>
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const logout = () => dispatch => {
-  !localStorage.carId ? console.log('no guest data to clear') : localStorage.removeItem('carId')
   axios
     .post('/auth/logout')
     .then(_ => {
       dispatch(removeUser());
       history.push('/login');
+      !localStorage.carId ? console.log('no guest data to clear') : localStorage.removeItem('carId')
     })
     .catch(err => console.log(err));
 }
