@@ -69,6 +69,7 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
+      !localStorage.carId ? console.log('no guest data to clear') : localStorage.removeItem('carId')
       dispatch(auth(email, password, formName));
     }
   };
