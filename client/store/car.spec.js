@@ -5,7 +5,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
 import history from '../history'
-import {gotCars, removedCar} from '../actionCreators/cars'
+import {gotCars, gotSingleCar, addedCar, loadedCar, removedCar} from '../actionCreators/cars'
 import CARS from '../actionTypes/cars';
 
 const middlewares = [thunkMiddleware]
@@ -48,6 +48,67 @@ describe('carReducer', () => {
       } ]
       const newState = reducer(initialState, gotCars(cars))
       expect(newState.cars).to.deep.equal(cars)
+    })
+
+    it('gets a single car on the state when a GOT_SINGLECAR action is dispatched', () => {
+      const cars = [{
+        name: 'Corvette',
+        model: 'ZF1',
+        year: 2018,
+        color: 'Ghost white',
+        description: 'Brand New',
+        specification: 'V20 engine',
+        price: 100000,
+        imageUrl:
+          'http://www.stingrayforums.com/forum/attachments/purchasing/13098d1411290857-finally-got-my-2015-c7-arctic-white-great-site-great-people-zf1.1.jpg',
+        country: 'USA',
+      }]
+      const newState = reducer(initialState, gotSingleCar(cars))
+      
+      expect(newState).to.deep.equal(newState)
+    })
+
+    it('adds cars to state when ADDED_CAR action is dispatched', () => {
+      const cars = [{
+        name: 'Corvette',
+        model: 'ZF1',
+        year: 2018,
+        color: 'Ghost white',
+        description: 'Brand New',
+        specification: 'V20 engine',
+        price: 100000,
+        imageUrl:
+          'http://www.stingrayforums.com/forum/attachments/purchasing/13098d1411290857-finally-got-my-2015-c7-arctic-white-great-site-great-people-zf1.1.jpg',
+        country: 'USA',
+      }]
+
+      const newState = reducer(initialState, addedCar(cars))
+      
+      expect(newState.status).to.deep.equal('loaded')
+    })
+
+    it('loads cars on state when REQUESTED_CAR action is dispatched', () => {
+      const cars = [{
+        
+        name: 'Corvette',
+        model: 'ZF1',
+        year: 2018,
+        color: 'Ghost white',
+        description: 'Brand New',
+        specification: 'V20 engine',
+        price: 100000,
+        imageUrl:
+          'http://www.stingrayforums.com/forum/attachments/purchasing/13098d1411290857-finally-got-my-2015-c7-arctic-white-great-site-great-people-zf1.1.jpg',
+        country: 'USA',
+      }]
+
+      const newState = reducer(initialState, loadedCar(cars))
+      console.log(newState)
+      expect(newState.status).to.deep.equal('loading')
+
+
+
+
     })
   
     it('removes a car on the state when a removedCar action is dispatched', () => {
