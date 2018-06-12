@@ -48,7 +48,6 @@ export const logout = () => dispatch => {
     .then(_ => {
       dispatch(removeUser());
       history.push('/login');
-      !localStorage.carId ? console.log('no guest data to clear') : localStorage.removeItem('carId')
     })
     .catch(err => console.log(err));
 }
