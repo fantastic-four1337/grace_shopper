@@ -8,6 +8,6 @@ export const PAYMENT_SERVER_URL =
 
 export const STRIPE_PUBLISHABLE =
   process.env.NODE_ENV === 'production'
-    ? 'pk_live_MY_PUBLISHABLE_KEY'
+    ? 'pk_test_lxX7WcVZ2WB0ZffLgO7FDtu8'
     : 'pk_test_lxX7WcVZ2WB0ZffLgO7FDtu8';
 
