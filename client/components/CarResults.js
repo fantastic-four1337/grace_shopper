@@ -29,18 +29,9 @@ class CarResults extends Component {
     const carsForSale = cars.filter(car => car.userId !== userId);
     return (
       <div className={classes.rowOfCars}>
-<<<<<<< HEAD
         {carsForSale.map(car => (
-          <SimpleCarCard
-            key={car.id}
-            car={car}
-            userId={userId}
-            {...this.props}
-          />
+          <SimpleCarCard key={car.id} car={car} {...this.props} />
         ))}
-=======
-        {carsForSale.map(car => <SimpleCarCard key={car.id} car={car} {...this.props} />)}
->>>>>>> master
       </div>
     );
   }
