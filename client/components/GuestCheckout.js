@@ -9,8 +9,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+
 import TextField from '@material-ui/core/TextField';
+import Stripe from './Stripe';
 
 import { getCars } from '../thunks/cars';
 import { addTransaction } from '../thunks/transactions';
@@ -173,7 +174,12 @@ class GuestCheckout extends Component {
             margin="normal"
           />
         </Paper>
-        <Button onClick={this.handleOrder}>Process Payment</Button>
+        <Stripe
+          // onClick={this.handleOrder}
+          name="Your Order"
+          description="Total 8 orders"
+          amount={1}
+        />
       </div>
     );
   }
