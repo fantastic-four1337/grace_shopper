@@ -80,9 +80,8 @@ class Cart extends Component {
     if (this.props.userId) {
       return this.props.cars.filter(car => car.cartId === this.props.userId);
     } else {
-      let parseObj = localStorage.getItem('carId');
-      let carIdArr = JSON.parse(parseObj);
-      return this.props.cars.filter(car => carIdArr.includes(car.id));
+      let carIdArr = !localStorage.carId ? [0] : JSON.parse(localStorage.carId)
+      return this.props.cars.filter((car) => carIdArr.includes(car.id))
     }
   }
 
